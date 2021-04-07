@@ -19,21 +19,32 @@ public class MemberLogoutServlet extends HttpServlet {
         super();
     }
 
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/logout_pop.jsp");
 		dp.forward(request, response);
 		
-//		HttpSession session = request.getSession();
-//	
-//		if(session.getAttribute("login") != null) {
-//			if(session.getAttribute("login").equals("true")) {
-//				session.invalidate();
-//			}
-//		}
-//		
-//		response.sendRedirect(request.getContextPath());
+
 	
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String res = request.getParameter("logout_ans");
+		
+		System.out.println(res);
+		
+//		if(res.equals(true)) {
+//			HttpSession session = request.getSession();
+//	
+//			if(session.getAttribute("login") != null) {
+//				if(session.getAttribute("login").equals("true")) {
+//					session.invalidate();
+//				}
+//			}
+//			
+//			response.sendRedirect(request.getContextPath());
+//		}
+		
 	}
 	
 }

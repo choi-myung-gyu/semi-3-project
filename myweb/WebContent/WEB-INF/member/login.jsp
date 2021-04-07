@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>환영합니다!</title>
-<link rel="stylesheet" href="../home_login.css" type="text/css">
+<link rel="stylesheet" href="./home_login.css" type="text/css">
 </head>
 <body>
 	<section class="main_c">
