@@ -17,7 +17,7 @@
 	<div>
 		<button type="button" onclick="location.href='<%=request.getContextPath() %>/temp/update?id=<%=data.getId()%>'">수정</button>
 		<button type="button" onclick="location.href='<%=request.getContextPath() %>/temp/delete?id=<%=data.getId()%>'">삭제</button>
-		<button type="button" onclick="location.href='<%=request.getContextPath() %>/temp/write'">목록</button>
+		<button type="button" onclick="location.href='<%=request.getContextPath() %>/temp'">목록</button>
 	</div>
 </body>
 </html>

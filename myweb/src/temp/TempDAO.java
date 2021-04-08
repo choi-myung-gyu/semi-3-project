@@ -30,7 +30,7 @@ public class TempDAO {
 	
 	public ArrayList<TempVO> getAll(){
 		ArrayList<TempVO> results = new ArrayList<TempVO>();
-		String sql = "SELECT id, name, c_date FROM temp_t";
+		String sql = "SELECT id, name, c_date FROM temp_t ORDER BY c_date DESC";
 		
 		try {
 			PreparedStatement pstat = this.connection.prepareStatement(sql);
@@ -70,25 +70,77 @@ public class TempDAO {
 		
 		return result;
 	}
-//	
+	
 //	public ArrayList<TempVO> selectName(String name){
 //		
 //	}
-//	
+	
 //	public ArrayList<TempVO> selectDate(Date date){
 //		
 //	}
-//	
-//	public void insertData(TempVO data) {
-//		
-//	}
-//	
-//	public void updateData(TempVO data) {
-//		
-//	}
-//	
-//	public void deleteData(TempVO data) {
-//		
-//	}
+	
+	public TempVO insert(TempVO data) {
+		int result = 0;
+		String sql = "SELECT id FROM (SELECT id FROM temp_t ORDER BY id DESC) WHERE ROWNUM = 1";
+		
+		try {
+			PreparedStatement pstat = this.connection.prepareStatement(sql);
+			ResultSet rs = pstat.executeQuery();
+			rs.next();
+			int id = rs.getInt("id") + 1;
+			
+			sql = "INSERT INTO temp_t(id, name, c_date) VALUES(?, ?, SYSDATE)";
+			pstat = this.connection.prepareStatement(sql);
+			pstat.setInt(1, id);
+			pstat.setString(2, data.getName());
+			result = pstat.executeUpdate();
+			
+			if(result == 1) {
+				sql = "SELECT id, name, c_date FROM temp_t WHERE id = ?";
+				pstat = this.connection.prepareStatement(sql);
+				pstat.setInt(1, id);
+				rs = pstat.executeQuery();
+				rs.next();
+				data.setRecord(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return data;
+	}
+	
+	public int update(TempVO data) {
+		int result = 0;
+		
+		String sql = "UPDATE temp_t SET name = ? WHERE id = ?";
+		
+		try {
+			PreparedStatement pstat = this.connection.prepareStatement(sql);
+			pstat.setString(1, data.getName());
+			pstat.setInt(2, data.getId());
+			result = pstat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	public int delete(int id) {
+		int result = 0;
+		
+		String sql = "DELETE FROM temp_t WHERE id = ?";
+		
+		try {
+			PreparedStatement pstat = this.connection.prepareStatement(sql);
+			pstat.setInt(1, id);
+			result = pstat.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 	
 }

@@ -6,14 +6,25 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="./pop.js"></script> 
+<script type="text/javascript">
+	function pop() {
+		var res = confirm("로그아웃 하시겠습니까?");
+		
+		console.log(res);
+		
+		if(res) {
+			document.getElementsByName("logout_ans")[0].value = "true";
+			document.getElementById("logout_confirm").submit();
+		} else {
+			history.back();
+		};
+	}
+</script> 
 </head>
 <body>
-	<form action="./semi-logout" method="post">
+	<form action="./semi-logout" method="post" id="logout_confirm">
 		<input type="hidden" name="logout_ans">
-		<button type="submit" onclick="pop()">로그아웃</button>
+		<button type="button" onclick="pop()">로그아웃</button>
 	</form>
-	
-	
 </body>
 </html>
