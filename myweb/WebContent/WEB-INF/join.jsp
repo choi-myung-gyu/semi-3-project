@@ -49,25 +49,25 @@
 			<tr>
 				<td>비밀번호 확인</td>
 				<td>
-				<input type="password" name="userPassword2" maxlength="20">
+				<input type="password" name="userPassword2" maxlength="20" >
 				</td>
 			</tr>
 			<tr>
 				<td>이름</td>
 				<td>
-				<input type="text" name="userName" id="name" maxlength="20">
+				<input type="text" name="userName" id="name" maxlength="20" required>
 				</td>
 			</tr>
 			<tr>
 				<td>이메일</td>
 				<td>
-				<input type="email" name="userEmail" maxlength="50">
+				<input type="email" name="userEmail" maxlength="50" required>
 				</td>
 			</tr>
 			<tr>
 				<td>핸드폰번호</td>
 				<td>
-				<input type="text" name="userPhone" maxlength="20"  placeholder="(-) 입력해주세요">
+				<input type="text" name="userPhone" maxlength="20"  placeholder="(-) 입력해주세요" required>
 				</td>
 			</tr>
 			<tr>

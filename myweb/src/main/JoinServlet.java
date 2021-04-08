@@ -33,7 +33,7 @@ public class JoinServlet extends HttpServlet {
 //		String email = request.getParameter("userEmail");
 //		String phone = request.getParameter("userPhone");
 		
-		RequestDispatcher dp = request.getRequestDispatcher("joinres.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("main.jsp");
 		dp.forward(request, response);
 	}
 
