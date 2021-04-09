@@ -26,25 +26,29 @@ public class MemberLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String userPassword = request.getParameter("userPassword");
-//		
-//		MemberDAO dao = new MemberDAO();
-//		MemberVO member = dao.login(userId, userPassword);
-//		HttpSession session = request.getSession();
 		
-//		if(member.getUserId() != null) {
-//			session.setAttribute("login", "true");
-//			session.setAttribute("userName", member.getUserName());
-//			session.setAttribute("userEmail", member.getUserEmail());
-//			session.setAttribute("userPhone", member.getUserPhone());
-//			session.setAttribute("joinDate", member.getJoinDate());
-//			
-//			response.sendRedirect("");	// 게시판 주소
-//		} else {
-//			// 로그인 실패시 팝업창 띄우기
-//			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/loginError_pop.jsp");
-//			dp.forward(request, response);
-//		}
+		MemberDAO dao = new MemberDAO();
+		MemberVO member = dao.login(userId, userPassword);
+		HttpSession session = request.getSession();
 		
+		if(member == null) System.out.println("member null");
+		if(member.getUserId() != null) {
+			System.out.println("로그인성공");
+			session.setAttribute("login", "true");
+			session.setAttribute("userName", member.getUserName());
+			session.setAttribute("userEmail", member.getUserEmail());
+			session.setAttribute("userPhone", member.getUserPhone());
+			session.setAttribute("joinDate", member.getJoinDate());
+			
+			response.sendRedirect("");	// 게시판 주소
+		} else {
+			System.out.println("로그인실패");
+			// 로그인 실패시 팝업창 띄우기
+			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/loginError_pop.jsp");
+			dp.forward(request, response);
+		}
+		
+		// 로그인 실패 팝업 test용
 		if(userId.equals("admin") && userPassword.equals("1234")) {
 			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/loginError_pop.jsp");
 			dp.forward(request, response);
