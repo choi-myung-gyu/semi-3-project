@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>hi</h1>
+	
+	<li><a href="./board">게시판</a></li>
 </body>
 </html>
