@@ -9,7 +9,7 @@
 </head>
 <body>
 <% ArrayList<TempVO> datas = (ArrayList<TempVO>)request.getAttribute("datas"); %>
-	<button type="button" onclick="locaion.href='<%=request.getContextPath() %>/temp/write]'">작성</button>
+	<button type="button" onclick="locaion.href='<%=request.getContextPath() %>/temp/write'">작성</button>
 	<table>
 		<tr>
 			<th>번호</th>

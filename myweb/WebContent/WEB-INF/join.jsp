@@ -31,8 +31,8 @@
 </head>
 <body>
     <div class="container">
-	    <form action="join" method="post" name="joinform">
 			<h1>회원가입</h1>
+	    <form action="join" method="post" name="userInfo" onsubmit="return checkValue()">
 		<table>
 			<tr>
 				<td>아이디</td>
@@ -72,7 +72,7 @@
 			</tr>
 			<tr>
 			<td>
-			<input type="submit" value="가입" onsubmit="return checkValue()">
+			<input type="submit" value="가입">
 			</td>
 			</tr>
 		</table>

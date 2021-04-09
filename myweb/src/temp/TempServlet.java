@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/temp")
-public class Tempservlet extends HttpServlet {
+public class TempServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
-    public Tempservlet() {
+    public TempServlet() {
         super();
     }
 

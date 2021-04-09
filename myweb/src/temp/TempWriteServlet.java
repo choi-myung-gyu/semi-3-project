@@ -24,7 +24,20 @@ public class TempWriteServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String name = request.getParameter("userName");
+		request.setCharacterEncoding("UTF-8");
+		
+		MultipartRequest multi = new MultipartREquest(
+				request,	// 멀티파트로 요청한 request 객체
+				request.getServletContext().getRealPath(File.separator) + "\\upload\\",	// 파일 업로드 경로
+				1024*1024*5,	// 업로드 파일 최대 크기
+				"uft-8",	// 인코딩
+				new DefaultFileRenamePolicy()	// 파일명 중복 발생시 파일명에 숫자 추가시켜주는 객체
+				);
+		
+		String name = multi.getParameter("userName");
+		
+		String file_sys_name = multi.getFilesystemName("file");
+		String file_cli_name = multi.getOriginalFileName("file");
 		
 		TempDAO dao = new TempDAO();
 		TempVO data = new TempVO();
