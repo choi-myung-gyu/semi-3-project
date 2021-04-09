@@ -22,20 +22,7 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 	}
-	public String getDate() {
-		String SQL = "SELECT SYSDATE FROM BORAD_T";		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "";
-	}
+	// B_ID 게시글번호 함수
 	public int getNext() {
 		String SQL = "SELECT B_ID FROM BORAD_T ORDER BY B_ID DESC";
 		
@@ -51,14 +38,55 @@ public class BbsDAO {
 		}
 		return -1;
 	}
-
-	public int write(String B_TITLE, String USERID, String B_CONTENT) {
-		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?)";
+	
+	//현재의 시간을 가져오는 함수(B_CREATEDATE)
+		public String getCreateDate() {
+			String SQL = "SELECT SYSDATE FROM BOARD_T";
+			
+			try {
+				PreparedStatement pstmt = conn.prepareStatement(SQL);
+				rs = pstmt.executeQuery();
+				if (rs.next()) {
+					return rs.getString(1);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			return "";
+		}
+		
+	//현재의 시간을 가져오는 함수(B_UPDATEEDATE)
+			public String getUpdateDate() {
+				String SQL = "SELECT SYSDATE FROM BOARD_T";
+					
+				try {
+					PreparedStatement pstmt = conn.prepareStatement(SQL);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+							return rs.getString(1);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+					
+					return "";
+				}
+		
+	// 글작성 함수
+	public int write(String B_TITLE, String USERID, String B_CONTENT, int B_VIEWCNT, int LIKECNT) {
+		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setString(1, B_TITLE);
-			pstmt.setString(2, USERID);
-			pstmt.setString(3, B_CONTENT);
+			pstmt.setInt(1, getNext());
+			pstmt.setString(2, B_TITLE);
+			pstmt.setString(3, USERID);
+			pstmt.setString(4, B_CONTENT);
+			pstmt.setString(5, getCreateDate());
+			pstmt.setString(6, getUpdateDate());
+			pstmt.setInt(7, B_VIEWCNT);
+			pstmt.setInt(8, LIKECNT);
+			
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {

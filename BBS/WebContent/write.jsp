@@ -22,6 +22,12 @@
     }
   </style>
 <body>
+	<%
+		String USERID = null;
+		if (session.getAttribute("USERID") != null) {
+			USERID = (String) session.getAttribute("USERID");
+		}
+	%>
 <!-- 게시글 쓰기 페이지 코드 -->
 	<div class="container">
 		<div class="row">
