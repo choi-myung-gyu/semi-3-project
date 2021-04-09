@@ -38,13 +38,16 @@ public class MemberDAO {
 	
 	private void connect() {
 		try {
-			Class.forName("orcle.jdbc.driver.OracleDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			System.out.println("JDBC DRIVER 로딩 완료");
 			
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "web_admin";
 			String password = "web_admin";
 			
 			this.conn = DriverManager.getConnection(url, user, password);
+			System.out.println("Oracle DB 접속 완료");
+
 			
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());

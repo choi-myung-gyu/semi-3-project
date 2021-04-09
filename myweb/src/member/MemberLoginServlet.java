@@ -31,7 +31,6 @@ public class MemberLoginServlet extends HttpServlet {
 		MemberVO member = dao.login(userId, userPassword);
 		HttpSession session = request.getSession();
 		
-		if(member == null) System.out.println("member null");
 		if(member.getUserId() != null) {
 			System.out.println("로그인성공");
 			session.setAttribute("login", "true");
@@ -49,10 +48,10 @@ public class MemberLoginServlet extends HttpServlet {
 		}
 		
 		// 로그인 실패 팝업 test용
-		if(userId.equals("admin") && userPassword.equals("1234")) {
-			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/loginError_pop.jsp");
-			dp.forward(request, response);
-		}
+//		if(userId.equals("admin") && userPassword.equals("1234")) {
+//			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/loginError_pop.jsp");
+//			dp.forward(request, response);
+//		}
 	}
 
 }
