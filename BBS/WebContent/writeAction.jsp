@@ -7,9 +7,9 @@
 	response.setContentType("text/html; charset=UTF-8"); 
 %>
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
-<jsp:setProperty name="bbs" property="B_TITLE" />
-<jsp:setProperty name="bbs" property="USERID" />
-<jsp:setProperty name="bbs" property="B_CONTENT" />
+<jsp:setProperty name="bbs" property="B_TITLE" value="111" />
+<jsp:setProperty name="bbs" property="USERID" value="111"/>
+<jsp:setProperty name="bbs" property="B_CONTENT" value="111"/>
 <%
 	System.out.println(bbs);
 %>

@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row">
 			<form method="post" action="writeAction.jsp">
-			<input type="submit" class="btn btn-primary pull-right" value="로그아웃">
+			<a class="btn btn-primary" href="login.jsp">로그아웃</a>
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
