@@ -53,17 +53,12 @@ public class BbsDAO {
 	}
 
 	public int write(String B_TITLE, String USERID, String B_CONTENT) {
-		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?)";
+		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext());
-			pstmt.setString(2, B_TITLE);
-			pstmt.setString(3, USERID);
-			pstmt.setString(4, B_CONTENT);
-			pstmt.setString(5, getDate());
-			pstmt.setString(6, getDate());
-			pstmt.setInt(8, getNext());
-			pstmt.setInt(6, 1);
+			pstmt.setString(1, B_TITLE);
+			pstmt.setString(2, USERID);
+			pstmt.setString(3, B_CONTENT);
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {
