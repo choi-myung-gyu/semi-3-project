@@ -7,6 +7,13 @@
 	response.setContentType("text/html; charset=UTF-8"); 
 %>
 <!-- 한명의 회원정보를 담는 user클래스를 자바 빈즈로 사용 -->
+<jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
+<jsp:setProperty name="bbs" property="b_title"  />
+<jsp:setProperty name="bbs" property="userid" />
+<jsp:setProperty name="bbs" property="b_content" />
+<%
+	System.out.println(bbs);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +22,40 @@
 </head>
 <body>
 	<%
+		String userID = null; 
+	if(session.getAttribute("userID") != null){
+		userID = (String)session.getAttribute("userID"); 
+	}
+	if(userID == null){
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
-		script.println("location.href='bbs.jsp'");
-		script.println("</script>");	
+		script.println("alert('로그인을 하세요.')");
+		script.println("location.href = 'login.jsp'");
+		script.println("</script>");
+	}else{
+		if(bbs.getB_title() == null || bbs.getUserid() == null || bbs.getB_content() == null ){
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('입력이 안된 사항이 있습니다.')");
+			script.println("history.back()");
+			script.println("</script>");
+		}else{
+			BbsDAO BbsDAO = new BbsDAO();
+			int result = BbsDAO.write(bbs.getB_title(), bbs.getUserid(), bbs.getB_content());
+			if(result == -1){
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("alert('글쓰기에 실패했습니다')");
+                script.println("history.back()");
+                script.println("</script>");
+			}else{
+				PrintWriter script = response.getWriter();
+				script.println("<script>");
+				script.println("location.href='bbs.jsp'");
+				script.println("</script>");
+			}
+		}
+	}
 	%>
 </body>
 </html>

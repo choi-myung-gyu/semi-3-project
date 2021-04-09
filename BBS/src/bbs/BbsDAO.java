@@ -72,9 +72,43 @@ public class BbsDAO {
 					
 					return "";
 				}
+			
+			public int getB_VIEWCNT() {
+				String SQL = "SELECT B_VIEWCNT FROM BORAD_T ORDER BY B_VIEWCNT DESC";
+				
+				try {
+					PreparedStatement pstmt = conn.prepareStatement(SQL);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						return rs.getInt(1) + 1;
+					}
+					return 1; 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return -1;
+			}
+			
+			public int getB_LIKECNT() {
+				String SQL = "SELECT B_LIKECNT FROM BORAD_T ORDER BY B_LIKECNT DESC";
+				
+				try {
+					PreparedStatement pstmt = conn.prepareStatement(SQL);
+					rs = pstmt.executeQuery();
+					if (rs.next()) {
+						return rs.getInt(1) + 1;
+					}
+					return 1; 
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return -1;
+			}
+			
+			
 		
 	// 글작성 함수
-	public int write(String B_TITLE, String USERID, String B_CONTENT, int B_VIEWCNT, int LIKECNT) {
+	public int write(String B_TITLE, String USERID, String B_CONTENT) {
 		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -84,8 +118,10 @@ public class BbsDAO {
 			pstmt.setString(4, B_CONTENT);
 			pstmt.setString(5, getCreateDate());
 			pstmt.setString(6, getUpdateDate());
-			pstmt.setInt(7, B_VIEWCNT);
-			pstmt.setInt(8, LIKECNT);
+			pstmt.setInt(7, getB_VIEWCNT());
+			pstmt.setInt(8, getB_LIKECNT());
+
+			
 			
 			return pstmt.executeUpdate();
 
