@@ -32,7 +32,7 @@
 <body>
     <div class="container">
 			<h1>회원가입</h1>
-	    <form action="join" method="post" name="userInfo" onsubmit="return checkValue()">
+	    <form action="main" method="post" name="userInfo" onsubmit="return checkValue()">
 		<table>
 			<tr>
 				<td>아이디</td>
