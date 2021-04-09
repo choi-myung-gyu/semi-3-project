@@ -1,47 +1,47 @@
 package user;
 
 public class User {
-	private String userID;
-	private String userPassword;
-	private String userName;
-	private String userMail;
-	private String userPhone;
-	private String joinDate;
+	private String USERID;
+	private String USERPASSWORD;
+	private String USERNAME;
+	private String USEREMAIL;
+	private String USERPHONE;
+	private String JOINDATE;
 	
 	public String getUserID() {
-		return userID;
+		return USERID;
 	}
 	public void setUserID(String userID) {
-		this.userID = userID;
+		this.USERID = userID;
 	}
 	public String getUserPassword() {
-		return userPassword;
+		return USERPASSWORD;
 	}
 	public void setUserPassword(String userPassword) {
-		this.userPassword = userPassword;
+		this.USERPASSWORD = userPassword;
 	}
 	public String getUserName() {
-		return userName;
+		return USERNAME;
 	}
 	public void setUserName(String userName) {
-		this.userName = userName;
+		this.USERNAME = userName;
 	}
 	public String getUserMail() {
-		return userMail;
+		return USEREMAIL;
 	}
 	public void setUserMail(String userMail) {
-		this.userMail = userMail;
+		this.USEREMAIL = userMail;
 	}
 	public String getUserPhone() {
-		return userPhone;
+		return USERPHONE;
 	}
 	public void setUserPhone(String userPhone) {
-		this.userPhone = userPhone;
+		this.USERPHONE = userPhone;
 	}
 	public String getJoinDate() {
-		return joinDate;
+		return JOINDATE;
 	}
 	public void setJoinDate(String joinDate) {
-		this.joinDate = joinDate;
+		this.JOINDATE = joinDate;
 	}
 }

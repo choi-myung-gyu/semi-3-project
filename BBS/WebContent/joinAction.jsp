@@ -6,12 +6,13 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <jsp:useBean id="user" class="user.User" scope="page" />
-<jsp:setProperty name="user" property="userID" />
-<jsp:setProperty name="user" property="userPassword" />
-<jsp:setProperty name="user" property="userName" />
-<jsp:setProperty name="user" property="userMail" />
-<jsp:setProperty name="user" property="userPhone" />
-<jsp:setProperty name="user" property="joinDate" />
+<jsp:setProperty name="user" property="USERID" />
+<jsp:setProperty name="user" property="USERPASSWORD" />
+<jsp:setProperty name="user" property="USERPASSWORD" />
+<jsp:setProperty name="user" property="USERNAME" />
+<jsp:setProperty name="user" property="USEREMAIL" />
+<jsp:setProperty name="user" property="USERPHONE" />
+
 
 <!DOCTYPE html>
 <html>
@@ -21,11 +22,11 @@
 </head>
 <body>
 	<%
-		String userID = null;
-		if (session.getAttribute("userID") != null) {
-			userID = (String) session.getAttribute("userID");
+		String USERID = null;
+		if (session.getAttribute("USERID") != null) {
+			USERID = (String) session.getAttribute("USERID");
 		}
-		if (userID != null) {
+		if (USERID != null) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
 			script.println("alert('이미 로그인 되어있습니다.')");

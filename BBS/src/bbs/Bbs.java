@@ -9,7 +9,6 @@ public class Bbs {
 		private String B_UPDATEDATE;
 		private int B_VIEWCNT;
 		private int B_LIKECNT;
-		
 		public int getB_ID() {
 			return B_ID;
 		}
@@ -58,5 +57,4 @@ public class Bbs {
 		public void setB_LIKECNT(int b_LIKECNT) {
 			B_LIKECNT = b_LIKECNT;
 		}
-	
 }
