@@ -14,7 +14,7 @@ public class Bbs {
 			return B_ID;
 		}
 		public void setB_ID(int b_ID) {
-			B_ID = b_ID;
+			this.B_ID = b_ID;
 		}
 		public String getB_TITLE() {
 			return B_TITLE;
@@ -25,8 +25,8 @@ public class Bbs {
 		public String getUSERID() {
 			return USERID;
 		}
-		public void setUserID(String userID) {
-			this.USERID = userID;
+		public void setUSERID(String uSERID) {
+			this.USERID = uSERID;
 		}
 		public String getB_CONTENT() {
 			return B_CONTENT;

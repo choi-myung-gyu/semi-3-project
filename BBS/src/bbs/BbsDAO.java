@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class BbsDAO {
 	
@@ -106,8 +107,6 @@ public class BbsDAO {
 				return -1;
 			}
 			
-			
-		
 	// 글작성 함수
 	public int write(String B_TITLE, String USERID, String B_CONTENT) {
 		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?)";
@@ -128,5 +127,32 @@ public class BbsDAO {
 			e.printStackTrace();
 		}
 		return -1; 
+	}
+	
+	public ArrayList<Bbs> getList(int pageNumber) {
+		
+		String SQL = "SELECT * FROM (SELECT * FROM BOARD_T WHERE B_ID <? and bbsAvailable=1 ORDER BY B_ID DESC) WHERE ROWNUM<=10";
+		
+		ArrayList<Bbs> list = new ArrayList<Bbs>();
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(SQL);
+			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Bbs bbs = new Bbs();
+				bbs.setB_ID(rs.getInt(1));
+				bbs.setB_TITLE(rs.getString(2)); 
+				bbs.setUSERID(rs.getString(3));
+				bbs.setB_CONTENT(rs.getString(4));
+				bbs.setB_CREATEDATE(rs.getString(5));
+				bbs.setB_UPDATEDATE(rs.getString(6));
+				bbs.setB_VIEWCNT(rs.getInt(7));
+				bbs.setB_LIKECNT(rs.getInt(8));
+				list.add(bbs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
