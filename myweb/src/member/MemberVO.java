@@ -9,7 +9,7 @@ public class MemberVO {
 	private String userEmail = null;
 	private String userPhone = null;
 	private Date joinDate = null;
-	
+
 	public String getUserId() {
 		return userId;
 	}
@@ -46,5 +46,9 @@ public class MemberVO {
 	public void setJoinDate(Date joinDate) {
 		this.joinDate = joinDate;
 	}
-	
+	@Override
+	public String toString() {
+		return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", joinDate=" + joinDate + "]";
 	}
+}

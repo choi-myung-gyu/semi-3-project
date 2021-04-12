@@ -3,17 +3,44 @@ package member;
 import java.sql.*;
 
 public class MemberDAO {
-	private Connection conn = null;
+	private Connection conn;
 	private PreparedStatement pstat = null;
 	private ResultSet res = null;
+	
+	private void connect() {
+		try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			String user = "web_admin";
+			String password = "admin";
+			
+			Connection conn = DriverManager.getConnection(url, user, password);
+			String sql = "SELECT * FROM MEMBER_t";
+			
+			Statement stat = conn.createStatement();
+			
+			ResultSet res = stat.executeQuery(sql);
+			
+			res.close();
+			stat.close();
+			conn.close();
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public MemberDAO() {
 		this.connect();
 	}
 	
 	public int joinCheck(String userId) {
-		
-		String sql = "SELECT * FROM WHERE ID = ?";
+		pstat = null;
+		res = null;
+		String sql = "SELECT * FROM WHERE userId = ?";
 	
 	try {
 		pstat = conn.prepareStatement(sql);
@@ -46,20 +73,20 @@ public class MemberDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	public int join(MemberVO vo){
-				
+	public int join(String userId, String userPassword, String userName, String userEmail, String userPhone){
+		String sql = "INSER INTO MEMBER(ID,PASS,NAME,EMAIL,PHONE,JOINDATE) VALUES(?,?,?,?,?,SYSDATE)";
+		
+		pstat = null;
+		res = null;
+		conn = null;
 		try {
-			
-			String sql = "INSER INTO MEMBER(ID,PASSWORD,NAME,EMAIL,PHONE,JOINDATE) VALUES(?,?,?,?,?,SYSDATE)";
-			
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, vo.getUserId());
-			pstat.setString(2, vo.getUserPassword());
-			pstat.setString(3, vo.getUserName());
-			pstat.setString(4, vo.getUserEmail());
-			pstat.setString(5, vo.getUserPhone());
-			return pstat.executeUpdate();
-			
+			pstat.setString(1, userId);
+			pstat.setString(2, userPassword);
+			pstat.setString(3, userName);
+			pstat.setString(4, userEmail);
+			pstat.setString(5, userPhone);
+			return pstat.executeUpdate();		
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -80,30 +107,4 @@ public class MemberDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	private void connect() {
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "web_admin";
-			String password = "damin";
-			
-			Connection conn = DriverManager.getConnection(url, user, password);
-			
-			String sql = "SELECT * FROM MEMBER_t";
-			
-			Statement stat = conn.createStatement();
-			
-			ResultSet res = stat.executeQuery(sql);
-			
-			res.close();
-			stat.close();
-			conn.close();
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 }
