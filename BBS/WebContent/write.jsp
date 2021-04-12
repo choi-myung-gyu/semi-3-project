@@ -13,29 +13,29 @@
 <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 <style>
-    .btn{
-      text-decoration: none;
-      color:white;
-      padding:10px 20px 10px 20px;
-      margin:20px; 
-      float: right;
-    }
-  </style>
+.btn {
+	text-decoration: none;
+	color: white;
+	padding: 10px 20px 10px 20px;
+	margin: 20px;
+	float: right;
+}
+</style>
 <body>
 	<%
 		String USERID = null;
-		if (session.getAttribute("USERID") != null) {
-			USERID = (String) session.getAttribute("USERID");
-		}
+	if (session.getAttribute("USERID") != null) {
+		USERID = (String) session.getAttribute("USERID");
+	}
 	%>
-<!-- 게시글 쓰기 페이지 코드 -->
+	<!-- 게시글 쓰기 페이지 코드 -->
 	<div class="container">
 		<div class="row">
-		<!--  writeAction.jsp -->
+			<!--  writeAction.jsp -->
 			<form method="post" action="writeAction.jsp">
-			<!-- 로그아웃 클릭시 login.jsp(로그인 페이지) 로 이동 -->
-			<a href="login.jsp" class="btn btn-primary" >로그아웃</a>
-			<!--  게시글 쓰기 테이플 생성 -->
+				<!-- 로그아웃 클릭시 login.jsp(로그인 페이지) 로 이동 -->
+				<a href="login.jsp" class="btn btn-primary">로그아웃</a>
+				<!--  게시글 쓰기 테이플 생성 -->
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd">
 					<thead>
@@ -55,7 +55,9 @@
 								placeholder="작성자" name="USERID" maxlength="20"></td>
 						</tr>
 						<tr>
-							<td><textarea type="text" class="form-control" placeholder="글 내용" name="B_CONTENT" maxlength="2048" style="height: 350px;"></textarea></td>
+							<td><textarea type="text" class="form-control"
+									placeholder="글 내용" name="B_CONTENT" maxlength="2048"
+									style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>

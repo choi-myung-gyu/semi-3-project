@@ -31,38 +31,38 @@ a, a:hover {
 				</thead>
 				<tbody>
 					<tr>
-                    <td>1</td>
-                    <td>안녕하세요</td>
-                    <td>홍길동</td>
-                    <td>2017-05-04</td>
-                    </tr>
-                    <tr>
-                    <td>2</td>
-                    <td>안녕하세요</td>
-                    <td>홍길동</td>
-                    <td>2017-05-04</td>
-                    </tr>
-                    <tr>
-                    <td>3</td>
-                    <td>안녕하세요</td>
-                    <td>홍길동</td>
-                    <td>2017-05-04</td>
-                    </tr>
-                    <tr>
-                    <td>4</td>
-                    <td>안녕하세요</td>
-                    <td>홍길동</td>
-                    <td>2017-05-04</td>
-                    </tr>
-                    <tr>
-                    <td>5</td>
-                    <td>안녕하세요</td>
-                    <td>홍길동</td>
-                    <td>2017-05-04</td>
-                    </tr>
-                 </tbody>
-               </table>
-            <a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
+						<td>1</td>
+						<td>안녕하세요</td>
+						<td>홍길동</td>
+						<td>2017-05-04</td>
+					</tr>
+					<tr>
+						<td>2</td>
+						<td>안녕하세요</td>
+						<td>홍길동</td>
+						<td>2017-05-04</td>
+					</tr>
+					<tr>
+						<td>3</td>
+						<td>안녕하세요</td>
+						<td>홍길동</td>
+						<td>2017-05-04</td>
+					</tr>
+					<tr>
+						<td>4</td>
+						<td>안녕하세요</td>
+						<td>홍길동</td>
+						<td>2017-05-04</td>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>안녕하세요</td>
+						<td>홍길동</td>
+						<td>2017-05-04</td>
+					</tr>
+				</tbody>
+			</table>
+			<a href="write.jsp" class="btn btn-primary pull-right">글쓰기</a>
 		</div>
 	</div>
 	<script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
