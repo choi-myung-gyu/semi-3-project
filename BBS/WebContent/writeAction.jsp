@@ -8,9 +8,15 @@
 %>
 <!-- 한명의 회원정보를 담는 user클래스를 자바 빈즈로 사용 -->
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
-<jsp:setProperty name="bbs" property="b_title"  />
-<jsp:setProperty name="bbs" property="userid" />
-<jsp:setProperty name="bbs" property="b_content" />
+<jsp:setProperty name="bbs" property="b_ID"  />
+<jsp:setProperty name="bbs" property="b_TITLE" />
+<jsp:setProperty name="bbs" property="userID" />
+<jsp:setProperty name="bbs" property="b_CONTENT" />
+<jsp:setProperty name="bbs" property="b_CREATEDATE" />
+<jsp:setProperty name="bbs" property="b_UPDATEDATE" />
+<jsp:setProperty name="bbs" property="b_VIEWCNT" />
+<jsp:setProperty name="bbs" property="b_LIKECNT" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +36,11 @@
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
 	}else{
-				PrintWriter script = response.getWriter();
-				script.println("<script>");
-				script.println("location.href='bbs.jsp'");
-				script.println("</script>");
-			}
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("location.href='bbs.jsp'");
+		script.println("</script>");
+		}
 	%>
 </body>
 </html>

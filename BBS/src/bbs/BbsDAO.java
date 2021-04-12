@@ -16,6 +16,7 @@ public class BbsDAO {
 			String dbURL = "jdbc:oracle:thin:@localhost:50000:xe";
 			String dbID = "system";
 			String dbPassword = "oracle";
+			
 			Class.forName(driverName);
 			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
 		} catch (Exception e) {
@@ -121,8 +122,6 @@ public class BbsDAO {
 			pstmt.setInt(7, getB_VIEWCNT());
 			pstmt.setInt(8, getB_LIKECNT());
 
-			
-			
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {

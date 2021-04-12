@@ -1,61 +1,61 @@
 package bbs;
 
 public class Bbs {
-		private int b_id;
-		private String b_title;
-		private String userid;
-		private String b_content;
-		private String b_createdate;
-		private String b_updatadate;
-		private int b_viewcnt;
-		private int b_likecnt;
-		public int getB_id() {
-			return b_id;
+		private int B_ID;
+		private String B_TITLE;
+		private String USERID;
+		private String B_CONTENT;
+		private String B_CREATEDATE;
+		private String B_UPDATEDATE;
+		private int B_VIEWCNT;
+		private int B_LIKECNT;
+		
+		public int getB_ID() {
+			return B_ID;
 		}
-		public void setB_id(int b_id) {
-			this.b_id = b_id;
+		public void setB_ID(int b_ID) {
+			B_ID = b_ID;
 		}
-		public String getB_title() {
-			return b_title;
+		public String getB_TITLE() {
+			return B_TITLE;
 		}
-		public void setB_title(String b_title) {
-			this.b_title = b_title;
+		public void setB_TITLE(String b_TITLE) {
+			this.B_TITLE = b_TITLE;
 		}
-		public String getUserid() {
-			return userid;
+		public String getUSERID() {
+			return USERID;
 		}
-		public void setUserid(String userid) {
-			this.userid = userid;
+		public void setUserID(String userID) {
+			this.USERID = userID;
 		}
-		public String getB_content() {
-			return b_content;
+		public String getB_CONTENT() {
+			return B_CONTENT;
 		}
-		public void setB_content(String b_content) {
-			this.b_content = b_content;
+		public void setB_CONTENT(String b_CONTENT) {
+			this.B_CONTENT = b_CONTENT;
 		}
-		public String getB_createdate() {
-			return b_createdate;
+		public String getB_CREATEDATE() {
+			return B_CREATEDATE;
 		}
-		public void setB_createdate(String b_createdate) {
-			this.b_createdate = b_createdate;
+		public void setB_CREATEDATE(String b_CREATEDATE) {
+			this.B_CREATEDATE = b_CREATEDATE;
 		}
-		public String getB_updatadate() {
-			return b_updatadate;
+		public String getB_UPDATEDATE() {
+			return B_UPDATEDATE;
 		}
-		public void setB_updatadate(String b_updatadate) {
-			this.b_updatadate = b_updatadate;
+		public void setB_UPDATEDATE(String b_UPDATEDATE) {
+			this.B_UPDATEDATE = b_UPDATEDATE;
 		}
-		public int getB_viewcnt() {
-			return b_viewcnt;
+		public int getB_VIEWCNT() {
+			return B_VIEWCNT;
 		}
-		public void setB_viewcnt(int b_viewcnt) {
-			this.b_viewcnt = b_viewcnt;
+		public void setB_VIEWCNT(int b_VIEWCNT) {
+			this.B_VIEWCNT = b_VIEWCNT;
 		}
-		public int getB_likecnt() {
-			return b_likecnt;
+		public int getB_LIKECNT() {
+			return B_LIKECNT;
 		}
-		public void setB_likecnt(int b_likecnt) {
-			this.b_likecnt = b_likecnt;
+		public void setB_LIKECNT(int b_LIKECNT) {
+			this.B_LIKECNT = b_LIKECNT;
 		}
-	
 }
