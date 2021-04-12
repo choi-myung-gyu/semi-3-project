@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import member.MemberDAO;
+import member.MemberVO;
 
 @WebServlet("/join")
 public class JoinServlet extends HttpServlet {
@@ -45,8 +46,15 @@ public class JoinServlet extends HttpServlet {
 		System.out.println("Phone : " + phone);
 		
 		// 회원가입 DB 추가
-
-		int result = new MemberDAO().join(id, name, pass, email, phone);
+		MemberVO vo = new MemberVO();
+		vo.setUserId(id);
+		vo.setUserName(name);
+		vo.setUserPassword(pass);
+		vo.setUserEmail(email);
+		vo.setUserPhone(phone);
+		
+		MemberDAO m = new MemberDAO();
+		int result = m.join(vo);
 				
 		if(result == 1) {
 			request.getSession().setAttribute("messageType", "성공 메시지");

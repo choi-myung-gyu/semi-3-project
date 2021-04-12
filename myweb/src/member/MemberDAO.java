@@ -73,19 +73,19 @@ public class MemberDAO {
 		return -1; // 데이터베이스 오류
 	}
 	
-	public int join(String userId, String userPassword, String userName, String userEmail, String userPhone){
-		String sql = "INSER INTO MEMBER(ID,PASS,NAME,EMAIL,PHONE,JOINDATE) VALUES(?,?,?,?,?,SYSDATE)";
+	public int join(MemberVO vo){
+		String sql = "INSERT INTO Member_t VALUES(?,?,?,?,?,SYSDATE)";
 		
 		pstat = null;
 		res = null;
-		conn = null;
 		try {
 			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, userId);
-			pstat.setString(2, userPassword);
-			pstat.setString(3, userName);
-			pstat.setString(4, userEmail);
-			pstat.setString(5, userPhone);
+			pstat.setString(1, vo.getUserId());
+			pstat.setString(2, vo.getUserPassword());
+			pstat.setString(3, vo.getUserName());
+			pstat.setString(4, vo.getUserEmail());
+			pstat.setString(5, vo.getUserPhone());
+			pstat.setDate(6, vo.getJoinDate());
 			return pstat.executeUpdate();		
 		} catch (Exception e) {
 			e.printStackTrace();
