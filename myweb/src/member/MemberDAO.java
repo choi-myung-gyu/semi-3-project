@@ -15,16 +15,16 @@ public class MemberDAO {
 			String user = "web_admin";
 			String password = "admin";
 			
-			Connection conn = DriverManager.getConnection(url, user, password);
-			String sql = "SELECT * FROM MEMBER_t";
+			this.conn = DriverManager.getConnection(url, user, password);
+//			String sql = "SELECT * FROM MEMBER_t";
+//			
+//			Statement stat = conn.createStatement();
+//			
+//			ResultSet res = stat.executeQuery(sql);
 			
-			Statement stat = conn.createStatement();
-			
-			ResultSet res = stat.executeQuery(sql);
-			
-			res.close();
-			stat.close();
-			conn.close();
+//			res.close();
+//			stat.close();
+//			conn.close();
 			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -76,35 +76,35 @@ public class MemberDAO {
 	public int join(MemberVO vo){
 		String sql = "INSERT INTO Member_t VALUES(?,?,?,?,?,SYSDATE)";
 		
-		pstat = null;
-		res = null;
 		try {
-			pstat = conn.prepareStatement(sql);
-			pstat.setString(1, vo.getUserId());
-			pstat.setString(2, vo.getUserPassword());
-			pstat.setString(3, vo.getUserName());
-			pstat.setString(4, vo.getUserEmail());
-			pstat.setString(5, vo.getUserPhone());
-			pstat.setDate(6, vo.getJoinDate());
-			return pstat.executeUpdate();		
+			this.pstat = this.conn.prepareStatement(sql);
+			this.pstat.setString(1, vo.getUserId());
+			this.pstat.setString(2, vo.getUserPassword());
+			this.pstat.setString(3, vo.getUserName());
+			this.pstat.setString(4, vo.getUserEmail());
+			this.pstat.setString(5, vo.getUserPhone());
+//			this.pstat.setDate(6, vo.getJoinDate());
+			return pstat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				if(conn != null) {
-					conn.close();
+				if(this.conn != null) {
+					this.conn.close();
 				}
-				if(pstat != null) {
-					pstat.close();
-				}
-				if(res != null) {
-					res.close();
+				if(this.pstat != null) {
+					this.pstat.close();
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}
 		return -1; // 데이터베이스 오류
+	}
+	
+	public void close() throws SQLException {
+		this.conn.close();
+		this.pstat.close();
 	}
 	
 }

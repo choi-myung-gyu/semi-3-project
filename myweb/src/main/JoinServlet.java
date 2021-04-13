@@ -1,6 +1,7 @@
 package main;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -55,6 +56,11 @@ public class JoinServlet extends HttpServlet {
 		
 		MemberDAO m = new MemberDAO();
 		int result = m.join(vo);
+		try {
+			m.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 				
 		if(result == 1) {
 			request.getSession().setAttribute("messageType", "성공 메시지");
