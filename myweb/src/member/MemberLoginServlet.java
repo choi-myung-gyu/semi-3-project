@@ -47,11 +47,8 @@ public class MemberLoginServlet extends HttpServlet {
 			dp.forward(request, response);
 		}
 		
-		// 로그인 실패 팝업 test용
-//		if(userId.equals("admin") && userPassword.equals("1234")) {
-//			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/loginError_pop.jsp");
-//			dp.forward(request, response);
-//		}
+		dao.close();
+		
 	}
 
 }

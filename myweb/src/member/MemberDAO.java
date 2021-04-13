@@ -85,7 +85,7 @@ public class MemberDAO {
 			pstat.setString(3, vo.getUserName());
 			pstat.setString(4, vo.getUserEmail());
 			pstat.setString(5, vo.getUserPhone());
-			pstat.setDate(6, vo.getJoinDate());
+//			pstat.setDate(6, vo.getJoinDate());
 			return pstat.executeUpdate();		
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -96,9 +96,6 @@ public class MemberDAO {
 				}
 				if(pstat != null) {
 					pstat.close();
-				}
-				if(res != null) {
-					res.close();
 				}
 			} catch(Exception e) {
 				e.printStackTrace();
