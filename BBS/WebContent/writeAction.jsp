@@ -11,7 +11,6 @@ response.setContentType("text/html; charset=UTF-8");
 <jsp:setProperty name="bbs" property="b_TITLE" />
 <jsp:setProperty name="bbs" property="USERID" />
 <jsp:setProperty name="bbs" property="b_CONTENT" />
-
 <!DOCTYPE html>
 <html>
 <head>

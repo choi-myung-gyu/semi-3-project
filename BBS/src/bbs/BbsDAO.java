@@ -109,7 +109,7 @@ public class BbsDAO {
 	}
 
 	// 글작성 함수
-	public int write(String B_TITLE, String USERID, String B_CONTENT) {
+	public int write(String B_TITLE, String USERID, String B_CONTENT){
 		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -117,43 +117,17 @@ public class BbsDAO {
 			pstmt.setString(2, B_TITLE);
 			pstmt.setString(3, USERID);
 			pstmt.setString(4, B_CONTENT);
-			pstmt.setString(5, getCreateDate());
+			pstmt.setString(5, getUpdateDate());
 			pstmt.setString(6, getUpdateDate());
 			pstmt.setInt(7, getB_ViewCnt());
 			pstmt.setInt(8, getB_LIKECNT());
 
+			
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return -1;
-	}
-
-	public ArrayList<Bbs> getList(int pageNumber) {
-
-		String SQL = "SELECT * FROM (SELECT * FROM BOARD_T WHERE B_ID <? and bbsAvailable=1 ORDER BY B_ID DESC) WHERE ROWNUM<=10";
-
-		ArrayList<Bbs> list = new ArrayList<Bbs>();
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			pstmt.setInt(1, getNext() - (pageNumber - 1) * 10);
-			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				Bbs bbs = new Bbs();
-				bbs.setB_ID(rs.getInt(1));
-				bbs.setB_TITLE(rs.getString(2));
-				bbs.setUSERID(rs.getString(3));
-				bbs.setB_CONTENT(rs.getString(4));
-				bbs.setB_CREATEDATE(rs.getString(5));
-				bbs.setB_UPDATEDATE(rs.getString(6));
-				bbs.setB_VIEWCNT(rs.getInt(7));
-				bbs.setB_LIKECNT(rs.getInt(8));
-				list.add(bbs);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return list;
 	}
 }

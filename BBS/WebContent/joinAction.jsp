@@ -6,12 +6,12 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <jsp:useBean id="user" class="user.User" scope="page" />
-<jsp:setProperty name="user" property="USERID" />
-<jsp:setProperty name="user" property="USERPASSWORD" />
-<jsp:setProperty name="user" property="USERPASSWORD" />
-<jsp:setProperty name="user" property="USERNAME" />
-<jsp:setProperty name="user" property="USEREMAIL" />
-<jsp:setProperty name="user" property="USERPHONE" />
+<jsp:setProperty name="user" property="userID" />
+<jsp:setProperty name="user" property="userPassword" />
+<jsp:setProperty name="user" property="userPassword" />
+<jsp:setProperty name="user" property="userName" />
+<jsp:setProperty name="user" property="userMail" />
+<jsp:setProperty name="user" property="userPhone" />
 
 
 <!DOCTYPE html>

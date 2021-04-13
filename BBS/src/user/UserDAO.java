@@ -56,7 +56,7 @@ public class UserDAO {
 	}
 
 	public int join(User user) {
-		String SQL = "INSERT INTO USER1 VALUES (?,?,?,?,?)";
+		String SQL = "INSERT INTO MEMBER_T VALUES (?,?,?,?,?,?)";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, user.getUserID());
