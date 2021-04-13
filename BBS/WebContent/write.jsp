@@ -23,9 +23,9 @@
 </style>
 <body>
 	<%
-		String USERID = null;
-	if (session.getAttribute("USERID") != null) {
-		USERID = (String) session.getAttribute("USERID");
+		String userID = null;
+	if (session.getAttribute("userID") != null) {
+		userID = (String) session.getAttribute("userID");
 	}
 	%>
 	<!-- 게시글 쓰기 페이지 코드 -->

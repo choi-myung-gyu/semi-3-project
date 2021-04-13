@@ -8,9 +8,9 @@ response.setContentType("text/html; charset=UTF-8");
 %>
 <!-- 한명의 회원정보를 담는 클래스를 자바 빈즈로 사용 -->
 <jsp:useBean id="bbs" class="bbs.Bbs" scope="page" />
-<jsp:setProperty name="bbs" property="b_TITLE" />
-<jsp:setProperty name="bbs" property="USERID" />
-<jsp:setProperty name="bbs" property="b_CONTENT" />
+<jsp:setProperty name="bbs" property="b_Title" />
+<jsp:setProperty name="bbs" property="userId" />
+<jsp:setProperty name="bbs" property="b_Content" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +18,7 @@ response.setContentType("text/html; charset=UTF-8");
 <title>게시글 쓰기 동작</title>
 </head>
 <body>
+
 	<%
 		String userID = null;
 	if (session.getAttribute("userID") != null) {
@@ -29,9 +30,9 @@ response.setContentType("text/html; charset=UTF-8");
 		script.println("alert('로그인을 하세요.')");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
-	} else {
+	}else {
 		BbsDAO BbsDAO = new BbsDAO();
-		int result = BbsDAO.write(bbs.getB_TITLE(), bbs.getUSERID(), bbs.getB_CONTENT());
+		int result = BbsDAO.write(bbs.getB_Title(), userID, bbs.getB_Content());
 		if (result == -1) {
 			PrintWriter script = response.getWriter();
 			script.println("<script>");
