@@ -59,6 +59,10 @@ body {
 	margin-right:auto;
 	margin-left:auto;
 }
+
+a:link { color: red; text-decoration: none;}
+a:visited { color: black; text-decoration: none;}
+a:hover { color: blue; text-decoration: underline;}
 </style>
 
 </head>
@@ -103,7 +107,7 @@ body {
 		<td align="center" width="100">작성자</td>
 		<td align="center" width="150">작성일</td>
 		<td align="center" width="50">조 회</td>
-		<td align="center" width="100">IP</td>
+		<td align="center" width="50">추천수</td>
 	</tr>
 <% 
 	for(int i =0; i < articleList.size(); i++){

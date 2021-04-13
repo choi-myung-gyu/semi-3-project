@@ -37,7 +37,7 @@ public class BoardDAO {
 				System.out.println("fail");
 			else
 				System.out.println("Connected");
-			sql = "select max(num) from boarde";
+			sql = "select max(num) from board_t";
 			pstmt = connection.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -47,7 +47,7 @@ public class BoardDAO {
 			}
 			closeDBResources(rs, pstmt);			
 			if(num!=0) {  
-				sql = "update boarde set re_step=re_step+1 where ref=? and re_step>?";
+				sql = "update board_t set re_step=re_step+1 where ref=? and re_step>?";
 				pstmt = connection.prepareStatement(sql);
 				pstmt.setInt(1, ref);
 				pstmt.setInt(2, re_step);
@@ -60,7 +60,7 @@ public class BoardDAO {
 				re_level = 0;
 			}
 			closeDBResources(rs, pstmt);			
-			sql="insert into boarde (num, writer, email, subject, passwd, reg_date, ";
+			sql="insert into board_t (num, writer, email, subject, passwd, reg_date, ";
 			sql+=" ref, re_step, re_level, content, ip, filename) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, number);
@@ -92,7 +92,7 @@ public class BoardDAO {
 		int x = 0;
 		try {
 			
-			pstmt = connection.prepareStatement("select count(*) from boarde");
+			pstmt = connection.prepareStatement("select count(*) from board_t");
 			rs= pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -118,7 +118,7 @@ public class BoardDAO {
 			String sql = "SELECT * "
 					+ "FROM (SELECT ROWNUM rnum, B.*"
 					+ " FROM "
-					+ " (SELECT * FROM BOARDE ORDER BY ref desc, re_step asc ) B ) ";
+					+ " (SELECT * FROM board_t ORDER BY ref desc, re_step asc ) B ) ";
 			sql += "WHERE rnum >= ? and rnum <= ?";
 			
 			pstmt = connection.prepareStatement(sql);
@@ -161,12 +161,12 @@ public class BoardDAO {
 		
 		try {
 			pstmt = connection.prepareStatement(
-					"update boarde set readcnt=readcnt+1 where num =?");
+					"update board_t set readcnt=readcnt+1 where num =?");
 				pstmt.setInt(1, num);
 				pstmt.executeUpdate();
 			
 			pstmt = connection.prepareStatement(
-					"select * from boarde where num = ?");
+					"select * from board_t where num = ?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			
@@ -201,7 +201,7 @@ public class BoardDAO {
 		
 		try {
 			pstmt = connection.prepareStatement(
-					"select * from boarde where num = ?");
+					"select * from board_t where num = ?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			
@@ -239,14 +239,14 @@ public class BoardDAO {
 		int x=-1;
 		try {
 			pstmt = connection.prepareStatement(
-					"select passwd from boarde where num = ?");
+					"select passwd from board_t where num = ?");
 			pstmt.setInt(1, article.getNum());
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				dbpasswd = rs.getString("passwd");
 				if(dbpasswd.equals(article.getPasswd())) {
-					sql = "update boarde set writer=?, email=?, subject=?, passwd=?";
+					sql = "update board_t set writer=?, email=?, subject=?, passwd=?";
 					sql+=", content=? where num=?";
 					pstmt = connection.prepareStatement(sql);
 					
@@ -276,14 +276,14 @@ public class BoardDAO {
 		int x = -1;
 		try {
 			pstmt = connection.prepareStatement(
-					"select passwd from boarde where num = ?");
+					"select passwd from board_t where num = ?");
 			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
 				dbpasswd = rs.getString("passwd");
 				if(dbpasswd.equals(passwd)) {
-					pstmt = connection.prepareStatement("delete from boarde where num = ?");
+					pstmt = connection.prepareStatement("delete from board_t where num = ?");
 					pstmt.setInt(1, num);
 					pstmt.executeUpdate();
 					x = 1;	
@@ -322,13 +322,6 @@ public class BoardDAO {
 	
 	public int insertLogin(LoginVO article) throws Exception {
 
-		ResultSet rs = null;
-		
-		String id = article.getId();
-		String passwd = article.getPasswd();
-		String email = article.getEmail();
-		String tel = article.getTel();
-		String name = article.getName();
 		int result = 0;
 		String sql = "";
 		
@@ -348,7 +341,7 @@ public class BoardDAO {
             pstmt.setString(5, article.getName());
 			pstmt.setTimestamp(6, article.getReg_date());
 			result = pstmt.executeUpdate();
-			rs.close();
+		
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
@@ -375,6 +368,7 @@ public class BoardDAO {
 	public void close() {
 		// 葛电 JDBC 包访 积己 按眉 沥焊 close()
 		try {
+			this.pstmt.close();
 			this.connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
