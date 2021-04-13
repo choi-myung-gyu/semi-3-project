@@ -23,7 +23,7 @@ public class JoinServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/join.jsp");
+		RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/member/join.jsp");
 		dp.forward(request, response);
 	}
 

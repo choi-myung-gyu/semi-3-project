@@ -6,6 +6,7 @@ public class MemberDAO {
 	private final String table = "MEMBER_t";
 	private Connection conn = null;
 	private PreparedStatement pstat = null;
+	private ResultSet res = null;
 	
 	public MemberDAO() {
 		this.connect();
@@ -24,7 +25,7 @@ public class MemberDAO {
 			this.pstat.setString(1, userId);
 			this.pstat.setString(2, userPassword);
 			
-			ResultSet res = this.pstat.executeQuery();
+			res = this.pstat.executeQuery();
 			if(res.next()) {
 				m.setRecord(res);
 			}
@@ -109,16 +110,13 @@ public class MemberDAO {
 	private void connect() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			System.out.println("JDBC DRIVER 로딩 완료");
 			
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 			String user = "web_admin";
 			String password = "web_admin";
 			
 			this.conn = DriverManager.getConnection(url, user, password);
-			System.out.println("Oracle DB 접속 완료");
 
-			
 		} catch (ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		} catch (SQLException e) {

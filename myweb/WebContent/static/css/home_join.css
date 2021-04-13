@@ -18,7 +18,7 @@ label, input {
     display: block;
 }
 
-.login-form {
+.join-form {
     border: 1px solid rgba(196, 196, 196, 0.404);
     background-color: rgba(255, 250, 250, 0.918);
     border-radius: 5px;
@@ -31,6 +31,8 @@ label, input {
 label {
     text-align: left;
     margin-bottom: 7px;
+    font-size: small;
+    font-weight : bold;
 }
 
 .input-block {
@@ -56,7 +58,7 @@ input {
     box-shadow: 0 0 0 3px rgba(84, 146, 216, 0.596);
 }
 
-.btn_login {
+.btn_join {
     margin-top: 10px;
     border: 1px solid;
     border-radius: 6px;
@@ -71,11 +73,11 @@ input {
     background-color: rgb(81, 104, 230);
 }
 
-.btn_login:hover {
+.btn_join:hover {
     background-color: rgb(46, 64, 164);
 }
 
-.btn_login:focus {
+.btn_join:focus {
     box-shadow: 0 0 0 3px rgba(84, 146, 216, 0.596);
     outline: none;
 }
