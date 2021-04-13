@@ -8,10 +8,10 @@
 <jsp:useBean id="user" class="user.User" scope="page" />
 <jsp:setProperty name="user" property="userID" />
 <jsp:setProperty name="user" property="userPassword" />
-<jsp:setProperty name="user" property="userName" />
+<%-- <jsp:setProperty name="user" property="userName" />
 <jsp:setProperty name="user" property="userMail" />
 <jsp:setProperty name="user" property="userPhone" />
-<jsp:setProperty name="user" property="joinDate" />
+<jsp:setProperty name="user" property="joinDate" /> --%>
 
 <!DOCTYPE html>
 <html>
@@ -24,6 +24,7 @@
 </head>
 <body>
 	<%
+		System.out.println(user.getUserID()+"\n"+user.getUserPassword());
 		UserDAO userDAO = new UserDAO();
 	int result = userDAO.login(user.getUserID(), user.getUserPassword());
 	if (result == 1) {

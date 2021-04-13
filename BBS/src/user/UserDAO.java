@@ -35,18 +35,20 @@ public class UserDAO {
 	}
 
 	public int login(String userID, String userPassword) {
-		String SQL = "SELECT userPassword FROM MEMBER_T WHERE userID = ?";
+		String SQL = "SELECT userid, userPassword FROM MEMBER_T WHERE userID = ? and userPassword = ?";
 		try {
 			pstmt = conn.prepareStatement(SQL);
 			pstmt.setString(1, userID);
+			pstmt.setString(2, userPassword);
 			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				if (rs.getString(1).equals(userPassword)) {
+			while (rs.next()) {
+				if(rs.getString(1).equals(userID) && rs.getString(2).equals(userPassword)){
 					return 1;
-				} else
-					return 0;
+				}
+				else
+					return -1;
 			}
-			return -1;
+				
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

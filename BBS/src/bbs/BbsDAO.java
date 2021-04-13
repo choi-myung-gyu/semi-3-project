@@ -76,7 +76,7 @@ public class BbsDAO {
 		return "";
 	}
 
-	public int getB_VIEWCNT() {
+	public int getB_ViewCnt() {
 		String SQL = "SELECT B_VIEWCNT FROM BORAD_T ORDER BY B_VIEWCNT DESC";
 
 		try {
@@ -119,7 +119,7 @@ public class BbsDAO {
 			pstmt.setString(4, B_CONTENT);
 			pstmt.setString(5, getCreateDate());
 			pstmt.setString(6, getUpdateDate());
-			pstmt.setInt(7, getB_VIEWCNT());
+			pstmt.setInt(7, getB_ViewCnt());
 			pstmt.setInt(8, getB_LIKECNT());
 
 			return pstmt.executeUpdate();
