@@ -171,7 +171,6 @@ public class BoardServlet extends HttpServlet {
 			
 			int result = 0;
 			
-
 			try{
 			
 			LoginVO article = new LoginVO();

@@ -17,9 +17,7 @@ public class BoardVO {
 	private int re_level;
 	private String filename;
 
-	/*
-	 * private String name; private String id; private String tel;
-	 */
+
 	public int getNum() {
 		return num;
 	}

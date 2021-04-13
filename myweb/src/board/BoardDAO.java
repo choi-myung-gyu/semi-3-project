@@ -8,7 +8,8 @@ import main.DBConnection;
 
 public class BoardDAO {
 	private Connection connection = null;
-
+	private PreparedStatement pstmt = null;
+	
 	private static BoardDAO instance = new BoardDAO();
 			
 	public static BoardDAO getInstance() {
@@ -21,8 +22,7 @@ public class BoardDAO {
 	}
 
 	public void insertArticle(BoardVO article) throws Exception {
-		
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		
 		int num = article.getNum();
@@ -76,17 +76,17 @@ public class BoardDAO {
 			pstmt.setString(11, article.getIp());
 			pstmt.setString(12, article.getFilename());
 			pstmt.executeUpdate();
+			
+			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			closeDBResources(rs, pstmt, connection);
-		}
+		
 	}
 	
 	
 	public int getArticleCount() throws Exception{
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		
 		int x = 0;
@@ -98,20 +98,18 @@ public class BoardDAO {
 			if(rs.next()) {
 				x=rs.getInt(1);
 			}
+			
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			if(rs != null)try {rs.close();}catch(SQLException ex) {}
-			if(pstmt != null)try {pstmt.close();}catch(SQLException ex) {}
-			if(connection != null)try {connection.close();}catch(SQLException ex) {}
-		}
+		
 		return x;
 	}
 	
 	
 	public List<BoardVO> getArticles(int start, int end) throws Exception{
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		
 		List<BoardVO> articleList = null;
@@ -145,24 +143,19 @@ public class BoardDAO {
 					article.setContent(rs.getString("content"));
 					article.setIp(rs.getString("ip"));
 					article.setFilename(rs.getString("filename"));
-					
 					articleList.add(article);
 				}while(rs.next());
 			}
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
-		}
-		finally {
-			if(rs != null)try {rs.close();}catch(SQLException ex) {}
-			if(pstmt != null)try {pstmt.close();}catch(SQLException ex) {}
-			if(connection != null)try {connection.close();}catch(SQLException ex) {}
 		}
 		
 		return articleList;
 	}
 	
 	public BoardVO getArticle(int num) throws Exception{
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		BoardVO article = null;
 		
@@ -193,19 +186,16 @@ public class BoardDAO {
 				article.setIp(rs.getString("ip"));
 				article.setFilename(rs.getString("filename"));
 			}
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			if(rs != null)try {rs.close();}catch(SQLException ex) {}
-			if(pstmt != null)try {pstmt.close();}catch(SQLException ex) {}
-			if(connection != null)try {connection.close();}catch(SQLException ex) {}
-		}
+		
 		return article;
 	}
 	
 	public BoardVO updateGetArticle(int num) throws Exception {
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		BoardVO article = null;
 		
@@ -231,22 +221,17 @@ public class BoardDAO {
 				article.setIp(rs.getString("ip"));
 				article.setFilename(rs.getString("filename"));
 			}
-			
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			if(rs != null)try {rs.close();}catch(SQLException ex) {}
-			if(pstmt != null)try {pstmt.close();}catch(SQLException ex) {}
-			if(connection != null)try {connection.close();}catch(SQLException ex) {}
-		}
+		
 		
 		return article;
 	}
 	
 	public int updateArticle(BoardVO article) throws Exception{
-		Connection conn = null;
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		
 		String dbpasswd = "";
@@ -277,18 +262,15 @@ public class BoardDAO {
 					x= 0;
 				}
 			}
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			if(rs != null)try {rs.close();}catch(SQLException ex) {}
-			if(pstmt != null)try {pstmt.close();}catch(SQLException ex) {}
-			if(conn != null)try {conn.close();}catch(SQLException ex) {}
-		}
+		
 		return x;
 	}
 	public int deleteArticle(int num, String passwd) throws Exception{
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		String dbpasswd = "";
 		int x = -1;
@@ -309,20 +291,16 @@ public class BoardDAO {
 					x = 0;	
 				}
 			}
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			if(rs != null)try {rs.close();}catch(SQLException ex) {}
-			if(pstmt != null)try {pstmt.close();}catch(SQLException ex) {}
-			if(connection != null)try {connection.close();}catch(SQLException ex) {}
-		}
+		
 		return x;
 	}
 	
 	public String checkIdPw(String id) throws Exception{
 		String dbpasswd = null;
-		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		
@@ -335,17 +313,15 @@ public class BoardDAO {
 			if(rs.next()) {
 				dbpasswd = rs.getString("passwd");
 			}
+			rs.close();
 		}catch(Exception ex) {
 			ex.printStackTrace();
-		}
-		finally {
-			closeDBResources(rs, pstmt, connection);
 		}
 		return dbpasswd;
 	}
 	
 	public int insertLogin(LoginVO article) throws Exception {
-		PreparedStatement pstmt = null;
+
 		ResultSet rs = null;
 		
 		String id = article.getId();
@@ -372,94 +348,14 @@ public class BoardDAO {
             pstmt.setString(5, article.getName());
 			pstmt.setTimestamp(6, article.getReg_date());
 			result = pstmt.executeUpdate();
+			rs.close();
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		finally {
-			closeDBResources(rs, pstmt, connection);
-		}
+		
 		return result;
 	}
 	
-	private void closeDBResources(ResultSet rs, Statement stmt, Connection conn) {
-		if (rs != null) {
-			try {
-				rs.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	
-		if(stmt != null) {
-			try {
-				stmt.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		if(conn != null) {
-			try {
-				conn.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	private void closeDBResources(ResultSet rs, PreparedStatement pstmt, Connection conn) {
-		if (rs != null) {
-			try {
-				rs.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		if(pstmt != null) {
-			try {
-				pstmt.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		if(conn != null) {
-			try {
-				conn.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	private void closeDBResources(PreparedStatement pstmt, Connection conn) {
-		if (pstmt != null) {
-			try {
-				pstmt.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		if(conn != null) {
-			try {
-				conn.close();
-			}catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
-	private void closeDBResources(Statement stmt, Connection conn) {
-		if (stmt != null) {
-			try {
-				stmt.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		if (conn != null) {
-			try {
-				conn.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-	}
 	private void closeDBResources(ResultSet rs, PreparedStatement pstmt) {
 		if (rs != null) {
 			try {
@@ -474,6 +370,14 @@ public class BoardDAO {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+	}
+	public void close() {
+		// 葛电 JDBC 包访 积己 按眉 沥焊 close()
+		try {
+			this.connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 	}
 	
