@@ -16,6 +16,7 @@ public class TempDeleteServlet extends HttpServlet {
     public TempDeleteServlet() {
         super();
     }
+<<<<<<< HEAD
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
@@ -35,3 +36,25 @@ public class TempDeleteServlet extends HttpServlet {
 	}
 
 }
+=======
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String id = request.getParameter("userId");
+		
+		TempDAO dao = new TempDAO();
+		if(dao.delete(Integer.parseInt(id)) == 1) {
+			response.sendRedirect(request.getContextPath() + "/temp");
+		} else {
+			request.setAttribute("msg", "삭제 처리 중 문제가 발생하였습니다.");
+			RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/jsp/err/err.jsp");
+			dp.forward(request, response);
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+>>>>>>> refs/remotes/origin/이성한

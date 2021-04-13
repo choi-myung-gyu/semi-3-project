@@ -13,14 +13,20 @@
 	<table>
 		<tr>
 			<th>번호</th>
-			<th>이름</th>
-			<th>날짜</th>
+			<th>아이디</th>
+			<th>비밀번호</th>
+			<th>이메일</th>
+			<th>핸드폰번호</th>
+			<th>가입일</th>
 		</tr>
 		<% for(TempVO data : datas) { %>
 			<tr>
-				<td><%=data.getId() %></td>
-				<td><a href="<%=request.getContextPath()%>/temp/detail?id=<%=data.getId()%>"><%=data.getName() %></a></td>
-				<td><%=data.getCDate() %></td>
+				<td><%=data.getUserId() %></td>
+				<td><a href="<%=request.getContextPath() %>/temp/detail?userId="><%=data.getUserName() %></a></td>
+				<td><%=data.getUserPassword() %></td>
+				<td><%=data.getUserEmail() %></td>
+				<td><%=data.getUserPhone() %></td>
+				<td><%=data.getJoinDate() %></td>
 			</tr>
 		<% } %>
 	</table>

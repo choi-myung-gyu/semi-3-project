@@ -71,4 +71,10 @@ public class MemberVO {
 		this.joinDate = joinDate;
 	}
 	
+	@Override
+	public String toString() {
+		return "MemberVO [userId=" + userId + ", userPassword=" + userPassword + ", userName=" + userName
+				+ ", userEmail=" + userEmail + ", userPhone=" + userPhone + ", joinDate=" + joinDate + "]";
+	}
+	
 }
