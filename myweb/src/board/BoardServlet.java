@@ -77,7 +77,7 @@ public class BoardServlet extends HttpServlet {
 				BoardVO article = new BoardVO();
 				
 				article.setNum(Integer.parseInt(multi.getParameter("num")));
-				article.setUserid(multi.getParameter("id"));
+				article.setUserid(multi.getParameter("userid"));
 				article.setTitle(multi.getParameter("title"));
 				article.setContent(multi.getParameter("content"));
 				article.setPasswd(multi.getParameter("passwd"));

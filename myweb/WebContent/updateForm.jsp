@@ -16,7 +16,7 @@
 <%
 	int num = Integer.parseInt(request.getParameter("num"));
 	String pageNum = request.getParameter("pageNum");
-	String id = (String)session.getAttribute("id");
+	String id = (String)session.getAttribute("userid");
 	String passwd = (String)session.getAttribute("passwd");
 	String strV = "";
 	

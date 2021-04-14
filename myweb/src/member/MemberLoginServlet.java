@@ -35,6 +35,7 @@ public class MemberLoginServlet extends HttpServlet {
 			System.out.println("로그인성공");
 			session.setAttribute("login", "true");
 			session.setAttribute("userid", member.getUserId());
+			session.setAttribute("passwd", member.getUserPassword());
 			session.setAttribute("userName", member.getUserName());
 			session.setAttribute("userEmail", member.getUserEmail());
 			session.setAttribute("userPhone", member.getUserPhone());
