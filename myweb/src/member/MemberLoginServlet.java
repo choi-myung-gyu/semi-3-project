@@ -39,7 +39,7 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("userPhone", member.getUserPhone());
 			session.setAttribute("joinDate", member.getJoinDate());
 			
-			response.sendRedirect("");	// 게시판 주소
+			response.sendRedirect(request.getContextPath() + "/list.jsp");	// 게시판 주소
 		} else {
 			System.out.println("로그인실패");
 			// 로그인 실패시 팝업창 띄우기
