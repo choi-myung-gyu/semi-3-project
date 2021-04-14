@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 section {
     height: 450px;
     padding: 14px;
@@ -23,7 +24,7 @@ h1 {
 	font-weight: bold;
 }
 
-.write-form {
+.update-form {
     border: 1px solid rgba(196, 196, 196, 0.404);
     background-color: rgba(255, 250, 250, 0.918);
     border-radius: 5px;
@@ -33,7 +34,7 @@ h1 {
     margin-top: 30px;
 }
 
-.btn_write, .btn_rewrite, .btn_list {
+.btn_update, .btn_list {
     margin-top: 10px;
     border: 1px solid;
     border-radius: 6px;
@@ -50,11 +51,11 @@ h1 {
     background-color: rgb(81, 104, 230);
 }
 
-.btn_write:hover, .btn_rewrite:hover, .btn_list:hover {
+.btn_update:hover, .btn_list:hover {
     background-color: rgb(46, 64, 164);
 }
 
-.btn_write:focus, .btn_rewrite:focus, .btn_list:focus {
+.btn_update:focus, .btn_list:focus {
     box-shadow: 0 0 0 3px rgba(84, 146, 216, 0.596);
     outline: none;
 }
