@@ -107,7 +107,6 @@ a:hover { color: blue; text-decoration: underline;}
 		<td align="center" width="100">작성자</td>
 		<td align="center" width="150">작성일</td>
 		<td align="center" width="50">조 회</td>
-		<td align="center" width="50">추천수</td>
 	</tr>
 <% 
 	for(int i =0; i < articleList.size(); i++){
@@ -128,19 +127,18 @@ a:hover { color: blue; text-decoration: underline;}
 <% } %>
 
 			<a href = "content.do?num=<%=article.getNum() %>&pageNum=<%=currentPage %>">
-				<%=article.getSubject() %>
+				<%=article.getTitle() %>
 			</a>
-<% if(article.getReadcount() >= 20) { %>
+<% if(article.getViewcnt() >= 20) { %>
 			<img src= "images/hot.png" border="0" height = "16"> <% } %>
 		</td>
 		<td width = "100" align = "left">
-			<a href = "mailto: <%=email %>">
-				<%=article.getWriter() %>
+			<a href = "mailto: <%=id %>">
+				<%=article.getUserid() %>
 			</a>
 		</td>
-		<td width = "150"><%= sdf.format(article.getReg_date()) %> </td>
-		<td width = "50"><%= article.getReadcount() %> </td>
-		<td width = "100"><%= article.getIp() %> </td>
+		<td width = "150"><%= sdf.format(article.getCreatedate()) %> </td>
+		<td width = "50"><%= article.getViewcnt() %> </td>
 	</tr>
 
 <% } %>

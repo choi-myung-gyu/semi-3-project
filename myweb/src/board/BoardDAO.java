@@ -60,21 +60,19 @@ public class BoardDAO {
 				re_level = 0;
 			}
 			closeDBResources(rs, pstmt);			
-			sql="insert into board_t (num, writer, email, subject, passwd, reg_date, ";
-			sql+=" ref, re_step, re_level, content, ip, filename) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+			sql="insert into board_t (num, userid, title, passwd, createdate, ";
+			sql+=" ref, re_step, re_level, content, filename) values (?,?,?,?,?,?,?,?,?,?)";
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setInt(1, number);
-            pstmt.setString(2, article.getWriter());
-            pstmt.setString(3, article.getEmail());
-            pstmt.setString(4, article.getSubject());
-            pstmt.setString(5, article.getPasswd());
-			pstmt.setTimestamp(6, article.getReg_date());
-            pstmt.setInt(7, ref);
-            pstmt.setInt(8, re_step);
-            pstmt.setInt(9, re_level);
-			pstmt.setString(10, article.getContent());
-			pstmt.setString(11, article.getIp());
-			pstmt.setString(12, article.getFilename());
+            pstmt.setString(2, article.getUserid());
+            pstmt.setString(3, article.getTitle());
+            pstmt.setString(4, article.getPasswd());
+			pstmt.setTimestamp(5, article.getCreatedate());
+            pstmt.setInt(6, ref);
+            pstmt.setInt(7, re_step);
+            pstmt.setInt(8, re_level);
+			pstmt.setString(9, article.getContent());
+			pstmt.setString(10, article.getFilename());
 			pstmt.executeUpdate();
 			
 			rs.close();
@@ -131,17 +129,15 @@ public class BoardDAO {
 				do {
 					BoardVO article = new BoardVO();
 					article.setNum(rs.getInt("num"));
-					article.setWriter(rs.getString("writer"));
-					article.setEmail(rs.getString("email"));
-					article.setSubject(rs.getString("subject"));
+					article.setUserid(rs.getString("userid"));
+					article.setTitle(rs.getString("title"));
 					article.setPasswd(rs.getString("passwd"));
-					article.setReg_date(rs.getTimestamp("reg_date"));
-					article.setReadcount(rs.getInt("readcnt"));
+					article.setCreatedate(rs.getTimestamp("createdate"));
+					article.setViewcnt(rs.getInt("viewcnt"));
 					article.setRef(rs.getInt("ref"));
 					article.setRe_step(rs.getInt("re_step"));
 					article.setRe_level(rs.getInt("re_level"));
 					article.setContent(rs.getString("content"));
-					article.setIp(rs.getString("ip"));
 					article.setFilename(rs.getString("filename"));
 					articleList.add(article);
 				}while(rs.next());
@@ -161,7 +157,7 @@ public class BoardDAO {
 		
 		try {
 			pstmt = connection.prepareStatement(
-					"update board_t set readcnt=readcnt+1 where num =?");
+					"update board_t set viewcnt=viewcnt+1 where num =?");
 				pstmt.setInt(1, num);
 				pstmt.executeUpdate();
 			
@@ -173,17 +169,15 @@ public class BoardDAO {
 			if(rs.next()) {
 				article= new BoardVO();				
 				article.setNum(rs.getInt("num"));
-				article.setWriter(rs.getString("writer"));
-				article.setEmail(rs.getString("email"));
-				article.setSubject(rs.getString("subject"));
+				article.setUserid(rs.getString("userid"));
+				article.setTitle(rs.getString("title"));
 				article.setPasswd(rs.getString("passwd"));
-				article.setReg_date(rs.getTimestamp("reg_date"));
-				article.setReadcount(rs.getInt("readcnt"));
+				article.setCreatedate(rs.getTimestamp("createdate"));
+				article.setViewcnt(rs.getInt("viewcnt"));
 				article.setRef(rs.getInt("ref"));
 				article.setRe_step(rs.getInt("re_step"));
 				article.setRe_level(rs.getInt("re_level"));
 				article.setContent(rs.getString("content"));
-				article.setIp(rs.getString("ip"));
 				article.setFilename(rs.getString("filename"));
 			}
 			rs.close();
@@ -208,17 +202,15 @@ public class BoardDAO {
 			if(rs.next()) {
 				article = new BoardVO();
 				article.setNum(rs.getInt("num"));
-				article.setWriter(rs.getString("writer"));
-				article.setEmail(rs.getString("email"));
-				article.setSubject(rs.getString("subject"));
+				article.setUserid(rs.getString("userid"));
+				article.setTitle(rs.getString("title"));
 				article.setPasswd(rs.getString("passwd"));
-				article.setReg_date(rs.getTimestamp("reg_date"));
-				article.setReadcount(rs.getInt("readcnt"));
+				article.setCreatedate(rs.getTimestamp("createdate"));
+				article.setViewcnt(rs.getInt("viewcnt"));
 				article.setRef(rs.getInt("ref"));
 				article.setRe_step(rs.getInt("re_step"));
 				article.setRe_level(rs.getInt("re_level"));
 				article.setContent(rs.getString("content"));
-				article.setIp(rs.getString("ip"));
 				article.setFilename(rs.getString("filename"));
 			}
 			rs.close();
@@ -246,16 +238,15 @@ public class BoardDAO {
 			if(rs.next()) {
 				dbpasswd = rs.getString("passwd");
 				if(dbpasswd.equals(article.getPasswd())) {
-					sql = "update board_t set writer=?, email=?, subject=?, passwd=?";
+					sql = "update board_t set userid=?, title=?, passwd=?";
 					sql+=", content=? where num=?";
 					pstmt = connection.prepareStatement(sql);
 					
-					pstmt.setString(1, article.getWriter());
-					pstmt.setString(2, article.getEmail());
-					pstmt.setString(3, article.getSubject());
-					pstmt.setString(4, article.getPasswd());
-					pstmt.setString(5, article.getContent());
-					pstmt.setInt(6, article.getNum());
+					pstmt.setString(1, article.getUserid());
+					pstmt.setString(2, article.getTitle());
+					pstmt.setString(3, article.getPasswd());
+					pstmt.setString(4, article.getContent());
+					pstmt.setInt(5, article.getNum());
 					pstmt.executeQuery();
 					x =1;
 				}else {

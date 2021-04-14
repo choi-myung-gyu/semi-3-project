@@ -70,17 +70,15 @@ public class BoardServlet extends HttpServlet {
 				BoardVO article = new BoardVO();
 				
 				article.setNum(Integer.parseInt(multi.getParameter("num")));
-				article.setWriter(multi.getParameter("writer"));
-				article.setSubject(multi.getParameter("subject"));
-				article.setEmail(multi.getParameter("email"));
+				article.setUserid(multi.getParameter("userid"));
+				article.setTitle(multi.getParameter("title"));
 				article.setContent(multi.getParameter("content"));
 				article.setPasswd(multi.getParameter("passwd"));
 				article.setRef(Integer.parseInt(multi.getParameter("ref")));
 				article.setRe_step(Integer.parseInt(multi.getParameter("re_step")));
 				article.setRe_level(Integer.parseInt(multi.getParameter("re_level")));
 				
-				article.setReg_date(new Timestamp(System.currentTimeMillis()) );
-				article.setIp(request.getRemoteAddr());
+				article.setCreatedate(new Timestamp(System.currentTimeMillis()) );
 				article.setFilename(filename);
 				
 				BoardDAO dbPro = BoardDAO.getInstance();
@@ -223,9 +221,8 @@ public class BoardServlet extends HttpServlet {
 						maxSize,encType,new DefaultFileRenamePolicy());
 				
 				BoardVO article = new BoardVO();
-				article.setWriter(multi.getParameter("writer"));
-				article.setEmail(multi.getParameter("email"));
-				article.setSubject(multi.getParameter("subject"));
+				article.setUserid(multi.getParameter("id"));
+				article.setTitle(multi.getParameter("title"));
 				article.setPasswd(multi.getParameter("passwd"));
 				article.setContent(multi.getParameter("content"));
 				article.setNum(Integer.parseInt(multi.getParameter("num")));

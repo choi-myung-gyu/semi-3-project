@@ -8,7 +8,6 @@
 int num = 0, ref = 1, re_step = 0, re_level = 0;
 String strV = "";
 String id = (String)session.getAttribute("id");
-String email = (String)session.getAttribute("email");
 String passwd = (String)session.getAttribute("passwd");
 try{
 	if(request.getParameter("num")!=null){
@@ -65,7 +64,7 @@ body {
     <td  width="70"  bgcolor="<%=value_c%>" align="center">이 름</td>
     <td  width="330" align="left">
        <input type="text" size="10" maxlength="10" 
-          name="writer" style="ime-mode:active;" value="<%=id %>" readonly></td><!--active:한글-->
+          name="userid" style="ime-mode:active;" value="<%=id %>" readonly></td><!--active:한글-->
   </tr>
   <tr>
     <td  width="70"  bgcolor="<%=value_c%>" align="center" >제 목</td>
@@ -76,15 +75,10 @@ body {
     else
     	strV = "[답변]";
     %>
-    <input type="text" size="40" maxlength="50" name="subject"
+    <input type="text" size="40" maxlength="50" name="title"
          value="<%=strV%>" style="ime-mode:active;"></td>	
   </tr>
-  <tr>
-    <td  width="70"  bgcolor="<%=value_c%>" align="center">Email</td>
-    <td  width="330" align="left">
-       <input type="text" size="40" maxlength="30" name="email" value="<%=email %>"
-           style="ime-mode:inactive;" readonly ></td><!--inactive:영문-->
-  </tr>
+
   <tr>
     <td  width="70"  bgcolor="<%=value_c%>" align="center" >Content</td>
     <td  width="330" align="left">
