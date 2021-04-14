@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 
 
-
 body {
 	font-size: 9pt; 
 	text-align: center;  
@@ -9,9 +8,8 @@ body {
 
 
 table {
-	font-size: 9pt;
+	font-size: 10pt;
 	text-align: center;
-	border: 3pt solid black;
 }
 
 select {
@@ -21,3 +19,4 @@ select {
 form {
 	font-size: 9pt; 
 }
+

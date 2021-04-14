@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+* {
+    box-sizing: border-box;
+}
+
+section {
+    height: 450px;
+    padding: 14px;
+}
+
+.main_c {
+    grid-area: c;
+    text-align: center;
+}
+
+body {
+	font-size: 9pt; 
+	text-align: center;  
+}
+
+
+table {
+	font-size: 10pt;
+	text-align: center;
+}
+
+select {
+	font-size: 9pt; 
+}
+
+form {
+	font-size: 9pt; 
+}
+
+h1 {
+	font-size : 20pt;
+	font-weight: bold;
+}
+h3 {
+	font-size : 12pt;
+	color: rgb(81, 104, 230);
+}
+
+
+.list-form {
+    border: 1px solid rgba(196, 196, 196, 0.404);
+    background-color: rgba(255, 250, 250, 0.918);
+    border-radius: 5px;
+    padding: 10px;
+    width: 600px;
+    display: inline-block;
+    margin-top: 30px;
+}
+
+.btn_write, .btn_logout {
+    margin-top: 10px;
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 5px 16px;
+    font-weight: 500;
+    width: 80px;
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 9pt;
+    font-weight: bold;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    background-color: rgb(81, 104, 230);
+}
+
+.btn_write:hover, .btn_logout:hover {
+    background-color: rgb(46, 64, 164);
+}
+
+.btn_write:focus, .btn_logout:focus {
+    box-shadow: 0 0 0 3px rgba(84, 146, 216, 0.596);
+    outline: none;
+}
