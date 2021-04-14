@@ -1,5 +1,6 @@
 package bbs;
 
+import java.security.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -17,23 +18,9 @@ public class BbsDAO {
 		
 	}
 
-//	public BbsDAO() {
-//		try {
-//			String driverName = "oracle.jdbc.driver.OracleDriver";
-//			String dbURL = "jdbc:oracle:thin:@localhost:50000:xe";
-//			String dbID = "system";
-//			String dbPassword = "oracle";
-//
-//			Class.forName(driverName);
-//			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
 	// B_ID 게시글번호 함수
 	public int getNext() {
-		String SQL = "SELECT B_ID FROM BOARD_T ORDER BY B_ID DESC";
+		String SQL = "SELECT NUM FROM BOARD_T ORDER BY NUM DESC";
 
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
@@ -67,46 +54,24 @@ public class BbsDAO {
 			
 			return "";
 	}
-	// 현재의 시간을 가져오는 함수(B_UPDATEEDATE)
-	public String getUpdateDate() {
-	
-		String SQL = "SELECT SYSDATE FROM BOARD_T";
-		// Select GETDATE();
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(SQL);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getString(1);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return "";
-	}
-	public int getB_ViewCnt() {
-		return -1;
-	}
-
-	public int getB_LIKECNT() {
-		return -1;
-	}
 
 	// 글작성 함수
-	public int write(String b_Title, String userId, String b_Content){
-		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?)";
+	public int write(String userId, String title, String passWd, String content, String fileName, String createDate, int viewCnt, int ref, int re_Step, int re_Level ){
+		String SQL = "INSERT INTO BOARD_T VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(SQL);
 			pstmt.setInt(1, getNext());
-			pstmt.setString(2, b_Title);
-			pstmt.setString(3, userId);
-			pstmt.setString(4, b_Content);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, title);
+			pstmt.setString(4, "12345"); //passwd
 			pstmt.setString(5, getCreateDate());
-			pstmt.setString(6, getUpdateDate());
-			pstmt.setInt(7, getB_ViewCnt());
-			pstmt.setInt(8, getB_LIKECNT());
-
+			pstmt.setInt(6, viewCnt);
+			pstmt.setInt(7, ref);
+			pstmt.setInt(8, re_Step);
+			pstmt.setInt(9, re_Level);
+			pstmt.setString(10, content);
+			pstmt.setString(11, fileName);
+			
 			return pstmt.executeUpdate();
 
 		} catch (Exception e) {

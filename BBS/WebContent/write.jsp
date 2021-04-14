@@ -48,15 +48,15 @@
 					<tbody>
 						<tr>
 							<td><input type="text" class="form-control"
-								placeholder="글 제목" name="B_TITLE" maxlength="200"></td>
+								placeholder="글 제목" name="title" maxlength="75"></td>
 						</tr>
 						<tr>
 							<td><input type="text" class="form-control"
-								placeholder="작성자" name="USERID" maxlength="20"></td>
+								placeholder="작성자" name="userId" maxlength="15"></td>
 						</tr>
 						<tr>
 							<td><textarea type="text" class="form-control"
-									placeholder="글 내용" name="B_CONTENT" maxlength="2048"
+									placeholder="글 내용" name="content" maxlength="3000"
 									style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
