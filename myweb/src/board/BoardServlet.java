@@ -1,5 +1,6 @@
 package board;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.Enumeration;
@@ -25,8 +26,6 @@ public class BoardServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
-		RequestDispatcher dp = request.getRequestDispatcher("/WEB-INF/content.jsp");
-		dp.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,6 +47,12 @@ public class BoardServlet extends HttpServlet {
 			String realFolder = "";	
 
 			String saveFolder = "/fileSave";
+			File isDir = new File(saveFolder); // 업로드 디렉토리 생성용
+			if(!isDir.isDirectory()) {
+				System.out.println("디렉토리 없습니다");
+				isDir.mkdir();
+			}
+			
 			String encType = "utf-8";
 			int maxSize = 5*1024*1024;
 
@@ -72,17 +77,15 @@ public class BoardServlet extends HttpServlet {
 				BoardVO article = new BoardVO();
 				
 				article.setNum(Integer.parseInt(multi.getParameter("num")));
-				article.setWriter(multi.getParameter("writer"));
-				article.setSubject(multi.getParameter("subject"));
-				article.setEmail(multi.getParameter("email"));
+				article.setUserid(multi.getParameter("id"));
+				article.setTitle(multi.getParameter("title"));
 				article.setContent(multi.getParameter("content"));
 				article.setPasswd(multi.getParameter("passwd"));
 				article.setRef(Integer.parseInt(multi.getParameter("ref")));
 				article.setRe_step(Integer.parseInt(multi.getParameter("re_step")));
 				article.setRe_level(Integer.parseInt(multi.getParameter("re_level")));
 				
-				article.setReg_date(new Timestamp(System.currentTimeMillis()) );
-				article.setIp(request.getRemoteAddr());
+				article.setCreatedate(new Timestamp(System.currentTimeMillis()) );
 				article.setFilename(filename);
 				
 				BoardDAO dbPro = BoardDAO.getInstance();
@@ -134,73 +137,6 @@ public class BoardServlet extends HttpServlet {
 			viewPage = "deletePro.jsp";
 		}
 		
-		if(action.contentEquals("loginPro.do")) {
-			String id = request.getParameter("id");
-			String email = request.getParameter("email");
-			String passwd = request.getParameter("passwd");
-			try {
-				BoardDAO dbPro = BoardDAO.getInstance();
-				String pwd = dbPro.checkIdPw(id);
-				if (pwd == null) {
-					request.setAttribute("checkId", -1);
-					viewPage = "login.jsp";
-				} else if (passwd.equals(pwd)) {
-					request.setAttribute("checkId", 0);
-					request.getSession().setAttribute("id", id);
-					request.getSession().setAttribute("email", email);
-					request.getSession().setAttribute("passwd", passwd);
-					viewPage = "list.do";
-				} else {
-					request.setAttribute("checkId", 1);
-					viewPage = "login.jsp";		
-				}
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		if(action.equals("member_insForm.do")) {
-			
-			viewPage = "member_insForm.jsp";
-		}
-		if(action.equals("member_insPro.do")) {
-			
-			String id = request.getParameter("id");
-			String passwd = request.getParameter("passwd");
-			String tel = request.getParameter("tel");
-			String name = request.getParameter("name");
-			String email = request.getParameter("email");
-			
-			int result = 0;
-			
-			try{
-			
-			LoginVO article = new LoginVO();
-			
-			article.setId(id);
-			article.setPasswd(passwd);
-			article.setTel(tel);
-			article.setName(name);
-			article.setEmail(email);
-			article.setReg_date(new Timestamp(System.currentTimeMillis()));
-		
-			
-			BoardDAO dbPro = BoardDAO.getInstance();
-			result = dbPro.insertLogin(article);
-
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-			
-			request.setAttribute("result", result);
-			request.setAttribute("id", id);
-			request.setAttribute("passwd", passwd);
-			request.setAttribute("email", email);
-			
-			viewPage = "member_insPro.jsp";
-		}
-		
-		
 		if(action.equals("update.do")) {
 			
 			viewPage = "updateForm.jsp";
@@ -225,9 +161,8 @@ public class BoardServlet extends HttpServlet {
 						maxSize,encType,new DefaultFileRenamePolicy());
 				
 				BoardVO article = new BoardVO();
-				article.setWriter(multi.getParameter("writer"));
-				article.setEmail(multi.getParameter("email"));
-				article.setSubject(multi.getParameter("subject"));
+				article.setUserid(multi.getParameter("id"));
+				article.setTitle(multi.getParameter("title"));
 				article.setPasswd(multi.getParameter("passwd"));
 				article.setContent(multi.getParameter("content"));
 				article.setNum(Integer.parseInt(multi.getParameter("num")));

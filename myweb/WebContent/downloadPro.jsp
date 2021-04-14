@@ -22,8 +22,9 @@ public static String con(String s){
 <%
 try{
 	String SAVEFOLDER = request.getSession().getServletContext().getRealPath("/fileSave");
-	String filename = request.getParameter("filename");
-	File file = new File(con(SAVEFOLDER + File.separator + filename));  
+ 	String filename = request.getParameter("filename");
+	String convName2 = new String(filename.getBytes("8859_1"), "euc-kr"); 
+	File file = new File(con(SAVEFOLDER + File.separator + filename + convName2));  
 	byte b[] = new byte[(int)file.length()];
 	response.setHeader("Accept-Ranges", "bytes");
 	String strClient = request.getHeader("User-Agent");

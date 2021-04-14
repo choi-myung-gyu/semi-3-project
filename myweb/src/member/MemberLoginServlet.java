@@ -34,10 +34,12 @@ public class MemberLoginServlet extends HttpServlet {
 		if(member.getUserId() != null) {
 			System.out.println("로그인성공");
 			session.setAttribute("login", "true");
+			session.setAttribute("userid", member.getUserId());
 			session.setAttribute("userName", member.getUserName());
 			session.setAttribute("userEmail", member.getUserEmail());
 			session.setAttribute("userPhone", member.getUserPhone());
 			session.setAttribute("joinDate", member.getJoinDate());
+			System.out.println("세션저장");
 			
 			response.sendRedirect(request.getContextPath() + "/list.jsp");	// 게시판 주소
 		} else {

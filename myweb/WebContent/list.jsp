@@ -11,15 +11,13 @@
 	SimpleDateFormat sdf =
 		new SimpleDateFormat("yyyy-MM-dd HH:mm");
 	
-
 %>
 
 <%
 	String pageNum = request.getParameter("pageNum");
 	String passwd = (String)session.getAttribute("passwd");
-	String id = (String)session.getAttribute("id");
+	String id = (String)session.getAttribute("userid");
 	String email = (String)session.getAttribute("email");
-
 	if(pageNum == null){
 		pageNum = "1";
 	}
@@ -48,21 +46,33 @@
 <link href="style.css?after" rel="stylesheet" type="text/css">
 <meta charset="UTF-8">
 <title>게시판</title>
+<script type="text/javascript">
+	function pop() {
+		var res = confirm("로그아웃 하시겠습니까?");
+		
+		console.log(res);
+		
+		if(res) {
+			document.getElementsByName("logout_ans")[0].value = "true";
+			document.getElementById("logout_confirm").submit();
+		} else {
+			history.back();
+		};
+	}
+</script> 
 <style type="text/css">
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-body {
-  font-family: "Roboto", sans-serif;    
-}
-.widwid{
-	width:726px;
-	margin-right:auto;
-	margin-left:auto;
-}
-
-a:link { color: red; text-decoration: none;}
-a:visited { color: black; text-decoration: none;}
-a:hover { color: blue; text-decoration: underline;}
+	@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+	body {
+	  font-family: "Roboto", sans-serif;    
+	}
+	.widwid{
+		width:726px;
+		margin-right:auto;
+		margin-left:auto;
+	}
+	a:link { color: red; text-decoration: none;}
+	a:visited { color: black; text-decoration: none;}
+	a:hover { color: blue; text-decoration: underline;}
 </style>
 
 </head>
@@ -82,7 +92,10 @@ a:hover { color: blue; text-decoration: underline;}
 <table>
 	<tr>
 		<td align="right" bgcolor="<%=value_c %>" >
-			<a href="logout.jsp">로그아웃</a>
+			<form action="./semi-logout" method="post" id="logout_confirm">
+				<input type="hidden" name="logout_ans">
+				<button type="button" onclick="pop()">로그아웃</button>
+			</form>
 		</td>
 	</tr>
 </table>
@@ -107,7 +120,6 @@ a:hover { color: blue; text-decoration: underline;}
 		<td align="center" width="100">작성자</td>
 		<td align="center" width="150">작성일</td>
 		<td align="center" width="50">조 회</td>
-		<td align="center" width="50">추천수</td>
 	</tr>
 <% 
 	for(int i =0; i < articleList.size(); i++){
@@ -128,19 +140,18 @@ a:hover { color: blue; text-decoration: underline;}
 <% } %>
 
 			<a href = "content.do?num=<%=article.getNum() %>&pageNum=<%=currentPage %>">
-				<%=article.getSubject() %>
+				<%=article.getTitle() %>
 			</a>
-<% if(article.getReadcount() >= 20) { %>
+<% if(article.getViewcnt() >= 20) { %>
 			<img src= "images/hot.png" border="0" height = "16"> <% } %>
 		</td>
 		<td width = "100" align = "left">
-			<a href = "mailto: <%=email %>">
-				<%=article.getWriter() %>
+			<a href = "mailto: <%=id %>">
+				<%=article.getUserid() %>
 			</a>
 		</td>
-		<td width = "150"><%= sdf.format(article.getReg_date()) %> </td>
-		<td width = "50"><%= article.getReadcount() %> </td>
-		<td width = "100"><%= article.getIp() %> </td>
+		<td width = "150"><%= sdf.format(article.getCreatedate()) %> </td>
+		<td width = "50"><%= article.getViewcnt() %> </td>
 	</tr>
 
 <% } %>

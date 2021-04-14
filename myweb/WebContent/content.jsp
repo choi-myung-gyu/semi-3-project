@@ -48,20 +48,20 @@ function download(filename){
 	     <%=article.getNum()%></td>
     <td align="center" width="125" bgcolor="<%=value_c%>">조회수</td>
     <td align="center" width="125" align="center">
-	     <%=article.getReadcount()%></td>
+	     <%=article.getViewcnt()%></td>
   </tr>
   <tr height="30">
     <td align="center" width="125" bgcolor="<%=value_c%>">작성자</td>
     <td align="center" width="125" align="center">
-	     <%=article.getWriter()%></td>
+	     <%=article.getUserid()%></td>
     <td align="center" width="125" bgcolor="<%=value_c%>" >작성일</td>
     <td align="center" width="125" align="center">
-	     <%= sdf.format(article.getReg_date())%></td>
+	     <%= sdf.format(article.getCreatedate())%></td>
   </tr>
   <tr height="30">
     <td align="center" width="125" bgcolor="<%=value_c%>">글제목</td>
     <td align="center" width="375" align="center" colspan="3">
-	     <%=article.getSubject()%></td>
+	     <%=article.getTitle()%></td>
   </tr>
   <tr>
     <td align="center" width="125" bgcolor="<%=value_c%>">글내용</td>
@@ -99,6 +99,7 @@ function download(filename){
     </td>
   </tr>
 </table>    
+
 <%
 	}catch(Exception e){}
 %>
@@ -107,6 +108,10 @@ function download(filename){
 <form name = "downloadForm" action = "downloadPro.jsp" method = "post">
 	<input type = "hidden" name = "filename">
 </form>
+
+
+
+
 
 </body>
 </html>
