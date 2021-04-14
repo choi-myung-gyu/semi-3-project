@@ -11,6 +11,9 @@ response.setContentType("text/html; charset=UTF-8");
 <jsp:setProperty name="bbs" property="title" />
 <jsp:setProperty name="bbs" property="userId" />
 <jsp:setProperty name="bbs" property="content" />
+<%
+	System.out.println(bbs);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,13 +27,21 @@ response.setContentType("text/html; charset=UTF-8");
 	if (session.getAttribute("userID") != null) {
 		userID = (String) session.getAttribute("userID");
 	}
+	
 	if (userID == null) {
 		PrintWriter script = response.getWriter();
 		script.println("<script>");
 		script.println("alert('로그인을 하세요.')");
 		script.println("location.href = 'login.jsp'");
 		script.println("</script>");
-	}else {
+	}else { 
+		if(bbs.getTitle() == null || bbs.getContent() == null){
+		PrintWriter script = response.getWriter();
+		script.println("<script>");
+		script.println("alert('입력이 안된 사항이 있습니다.')");
+		script.println("history.back()");
+		script.println("</script>");
+	} else {
 		BbsDAO BbsDAO = new BbsDAO();
 		int result = BbsDAO.write(bbs.getUserId(), bbs.getTitle(), bbs.getPassWd(), bbs.getContent(),bbs.getFileName(), bbs.getCreateDate(), bbs.getViewCnt(),bbs.getRef(), bbs.getRe_Step(), bbs.getRe_Level() );
 		if (result == -1) {
@@ -46,6 +57,7 @@ response.setContentType("text/html; charset=UTF-8");
 			script.println("</script>");
 		}
 	}
+}
 	%>
 </body>
 </html>

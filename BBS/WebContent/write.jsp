@@ -28,6 +28,12 @@
 		userID = (String) session.getAttribute("userID");
 	}
 	%>
+	<%
+		String passWd = null;
+	if (session.getAttribute("passWd") != null) {
+		passWd = (String) session.getAttribute("passWd");
+	}
+	%>
 	<!-- 게시글 쓰기 페이지 코드 -->
 	<div class="container">
 		<div class="row">

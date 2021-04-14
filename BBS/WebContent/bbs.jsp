@@ -17,6 +17,18 @@ a, a:hover {
 </style>
 </head>
 <body>
+	<%
+		String userID = null;
+		if (session.getAttribute("userID") != null) {
+			userID = (String) session.getAttribute("userID");
+		}
+	%>
+	<%
+		String passWd = null;
+	if (session.getAttribute("passWd") != null) {
+		passWd = (String) session.getAttribute("passWd");
+	}
+	%>
 	<div class="container">
 		<div class="row">
 			<table class="table table-striped"

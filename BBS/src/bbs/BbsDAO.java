@@ -63,7 +63,7 @@ public class BbsDAO {
 			pstmt.setInt(1, getNext());
 			pstmt.setString(2, userId);
 			pstmt.setString(3, title);
-			pstmt.setString(4, "12345"); //passwd
+			pstmt.setString(4, "123"); 
 			pstmt.setString(5, getCreateDate());
 			pstmt.setInt(6, viewCnt);
 			pstmt.setInt(7, ref);
