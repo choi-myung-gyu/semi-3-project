@@ -108,35 +108,5 @@ function download(filename){
 	<input type = "hidden" name = "filename">
 </form>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

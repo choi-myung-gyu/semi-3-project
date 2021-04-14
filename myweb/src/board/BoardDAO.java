@@ -17,7 +17,7 @@ public class BoardDAO {
 	}
 	
 	public BoardDAO(){
-		this.connection = new DBConnection("50000", "adminsystem", "oracle").getConnect();
+		this.connection = new DBConnection("1521", "web_admin", "web_admin").getConnect();
 		
 	}
 
@@ -366,7 +366,6 @@ public class BoardDAO {
 		}
 	}
 	public void close() {
-		// ��� JDBC ���� ���� ��ü ���� close()
 		try {
 			this.pstmt.close();
 			this.connection.close();

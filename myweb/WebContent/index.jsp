@@ -25,7 +25,6 @@
 </nav>
 
 <footer>
-대구시 동구 동부로 통합응용SW
 </footer>
 </body>
 </html>
