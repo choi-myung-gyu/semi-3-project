@@ -5,25 +5,31 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import main.DBconnection;
 
 public class BbsDAO {
 
 	private Connection conn;
 	private ResultSet rs;
 
-	public BbsDAO() {
-		try {
-			String driverName = "oracle.jdbc.driver.OracleDriver";
-			String dbURL = "jdbc:oracle:thin:@localhost:50000:xe";
-			String dbID = "system";
-			String dbPassword = "oracle";
-
-			Class.forName(driverName);
-			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public BbsDAO(){
+		this.conn = new DBconnection("50000", "SYSTEM", "oracle").getConnect();
+		
 	}
+
+//	public BbsDAO() {
+//		try {
+//			String driverName = "oracle.jdbc.driver.OracleDriver";
+//			String dbURL = "jdbc:oracle:thin:@localhost:50000:xe";
+//			String dbID = "system";
+//			String dbPassword = "oracle";
+//
+//			Class.forName(driverName);
+//			conn = DriverManager.getConnection(dbURL, dbID, dbPassword);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	// B_ID 게시글번호 함수
 	public int getNext() {
