@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-* {
-    box-sizing: border-box;
-}
 
 section {
     height: 450px;
@@ -14,37 +11,24 @@ section {
     text-align: center;
 }
 
-body {
-	font-size: 9pt; 
-	text-align: center;  
-}
-
-
-table {
-	font-size: 10pt;
-	text-align: center;
-}
-
 select {
 	font-size: 9pt; 
 }
 
 form {
-	font-size: 9pt; 
+	font-size: 10pt; 
 }
 
 h1 {
 	font-size : 20pt;
 	font-weight: bold;
 }
-
 h3 {
 	font-size : 12pt;
 	color: rgb(81, 104, 230);
 }
 
-
-.list-form {
+.content-form {
     border: 1px solid rgba(196, 196, 196, 0.404);
     background-color: rgba(255, 250, 250, 0.918);
     border-radius: 5px;
@@ -54,13 +38,13 @@ h3 {
     margin-top: 30px;
 }
 
-.btn_write, .btn_logout {
+.btn_update, .btn_delete, .btn_re, .btn_list {
     margin-top: 10px;
     border: 1px solid;
     border-radius: 6px;
     padding: 5px 16px;
     font-weight: 500;
-    width: 80px;
+    width: 70px;
     height: 30px;
     vertical-align: middle;
     text-align: center;
@@ -71,11 +55,11 @@ h3 {
     background-color: rgb(81, 104, 230);
 }
 
-.btn_write:hover, .btn_logout:hover {
+.btn_update:hover, .btn_delete:hover, .btn_re:hover, .btn_list:hover {
     background-color: rgb(46, 64, 164);
 }
 
-.btn_write:focus, .btn_logout:focus {
+.btn_update:focus, .btn_delete:focus, .btn_re:focus, .btn_list:focus {
     box-shadow: 0 0 0 3px rgba(84, 146, 216, 0.596);
     outline: none;
 }
