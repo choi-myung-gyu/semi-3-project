@@ -72,7 +72,7 @@ body {
     if(request.getParameter("num")==null)
     	strV ="";
     else
-    	strV = "[답변]";
+    	strV = "[답글]";
     %>
     <input type="text" size="40" maxlength="50" name="title"
          value="<%=strV%>" style="ime-mode:active;"></td>	

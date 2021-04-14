@@ -129,14 +129,17 @@
 		<td width="50"> <%=number-- %> </td>
 		<td width="250" align="left">
 <%
-		int wid=0;
+		/* int wid=0; */
 		if(article.getRe_level() > 0){
-			wid=5*(article.getRe_level());
+			/* wid=5*(article.getRe_level()); */
+			for(int j = 0; j < article.getRe_level(); j++) { 
 %>
-			<img src="images/level.png" width="<%=wid %>" height="16">
-			<img src ="images/re.png">
+			&nbsp;
+<% } %>
+			<%-- <img src="<%=request.getContextPath()%>/static/re.png" width="<%=wid %>" height="16"> --%>
+			<img src ="<%=request.getContextPath()%>/static/re.png">
 <% }else { %>
-			<img src = "images/re.png" width = "<%=wid %>" height = "16">
+			<%-- <img src = "<%=request.getContextPath()%>/static/re.png" width = "<%=wid %>" height = "16"> --%>
 <% } %>
 
 			<a href = "content.do?num=<%=article.getNum() %>&pageNum=<%=currentPage %>">
