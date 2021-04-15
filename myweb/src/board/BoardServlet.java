@@ -46,11 +46,16 @@ public class BoardServlet extends HttpServlet {
 			String filename = "";
 			String realFolder = "";	
 
-			String saveFolder = "/fileSave";
+			String saveFolder = File.separator + "fileSave";
+//			String saveFolder = request.getSession().getServletContext().getRealPath("/") + "fileSave";
 			File isDir = new File(saveFolder); // 업로드 디렉토리 생성용
+//			System.out.println(isDir.getAbsolutePath());
+//			System.out.println(isDir.getPath());
 			if(!isDir.isDirectory()) {
 				System.out.println("디렉토리 없습니다");
 				isDir.mkdir();
+				if(isDir.mkdir()) System.out.println("디렉토리 생성 o");
+				else System.out.println("디렉토리 생성 x");
 			}
 			
 			String encType = "utf-8";
