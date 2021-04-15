@@ -46,23 +46,24 @@ public class BoardServlet extends HttpServlet {
 			String filename = "";
 			String realFolder = "";	
 
-			String saveFolder = File.separator + "fileSave";
-//			String saveFolder = request.getSession().getServletContext().getRealPath("/") + "fileSave";
+//			String saveFolder = File.separator + "fileSave";
+			String saveFolder = request.getSession().getServletContext().getRealPath("/") + "fileSave";
+//			System.out.println("saveFolder : " + saveFolder);
 			File isDir = new File(saveFolder); // 업로드 디렉토리 생성용
-//			System.out.println(isDir.getAbsolutePath());
+////			File f = new File(request.getSession().getServletContext().getRealPath("/"), "fileSave");
+////			f.mkdir();
+//			System.out.println("isDir.getPath() : " + isDir.getAbsolutePath());
 //			System.out.println(isDir.getPath());
-			if(!isDir.isDirectory()) {
-				System.out.println("디렉토리 없습니다");
-				isDir.mkdir();
-				if(isDir.mkdir()) System.out.println("디렉토리 생성 o");
-				else System.out.println("디렉토리 생성 x");
-			}
+			isDir.mkdir();
+
 			
 			String encType = "utf-8";
 			int maxSize = 5*1024*1024;
 
-			ServletContext context = getServletContext();
-			realFolder = context.getRealPath(saveFolder);
+//			ServletContext context = getServletContext();
+//			realFolder = context.getRealPath(saveFolder);
+			realFolder = request.getSession().getServletContext().getRealPath("/") + "fileSave";
+//			realFolder = context.getRealPath(request.getSession().getServletContext().getRealPath("/") + "fileSave");
 
 			MultipartRequest multi = null;
 			try{
