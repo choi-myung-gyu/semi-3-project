@@ -17,7 +17,7 @@ public class BoardDAO {
 	}
 	
 	public BoardDAO(){
-		this.connection = new DBConnection("1521", "web_admin", "web_admin").getConnect();
+		this.connection = new DBConnection("1521", "system", "oracle").getConnect();
 		
 	}
 

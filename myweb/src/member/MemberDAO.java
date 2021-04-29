@@ -109,8 +109,8 @@ public class MemberDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-			String user = "web_admin";
-			String password = "web_admin";
+			String user = "system";
+			String password = "oracle";
 			
 			this.conn = DriverManager.getConnection(url, user, password);
 

@@ -6,8 +6,8 @@ public class DBConnection {
 	private String url = "jdbc:oracle:thin:@";
 	private String ip = "localhost";
 	private String port = "1521";
-	private String username = "web_admin";
-	private String password = "web_admin";
+	private String username = "system";
+	private String password = "oracle";
 	private Connection connection = null;
 	
 	public DBConnection() {
