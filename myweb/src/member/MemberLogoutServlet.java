@@ -27,9 +27,10 @@ public class MemberLogoutServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String res = request.getParameter("logout_ans");
-//		System.out.println("post전달완료");
-//		System.out.println(res);
+		// 3줄 주석
+		String res = request.getParameter("logout_ans");
+		System.out.println("post전달완료");
+		System.out.println(res);
 		
 		HttpSession session = request.getSession();
 
