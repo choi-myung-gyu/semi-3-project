@@ -13,15 +13,20 @@
 	function sendAJAX() {
 		$.ajax({
 			url: "<%=request.getContextPath() %>/ajax/temp/list",
-			type: "get",
-			datatype: "json", 
+			type: "get", datatype: "json", 
 			data: {
-				name: "Ajax",
-				value: "send data"
+				name: "Ajax", value: "send data"
 			},
+			// HTTP 응답 코드 200번
 			success: function(data) {
+				// "data : 서버에서 전송한 JSON 데이터"
 				alert("Ajax 통신이 완료되었습니다." + data.res);
 				$("#res").val(data.res);
+			},
+			// HTTP 응답 코드 중 200번을 제외한 모든 응답
+			error: function(jqxhr, status) {
+				// "jqxhr : JQueryXMLHttpRequest 객체"
+				// "status : 에러 종류와 관련된 문자열"
 			}
 		});
 	}

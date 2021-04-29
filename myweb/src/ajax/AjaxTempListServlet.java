@@ -28,7 +28,7 @@ public class AjaxTempListServlet extends HttpServlet {
 		
 		// 처리 결과를 JSON 형식으로 클라이언트에 전달
 		response.setCharacterEncoding("UTF-8");
-		response.setContentType("application/json");
+		response.setContentType("application/json; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print("{\"res\": \"한글확인\"}");
 	}
