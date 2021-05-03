@@ -40,7 +40,7 @@ public class MemberLogoutServlet extends HttpServlet {
 			}
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/semi-login");
+		response.sendRedirect(request.getContextPath() + "/main");
 		
 	}
 	

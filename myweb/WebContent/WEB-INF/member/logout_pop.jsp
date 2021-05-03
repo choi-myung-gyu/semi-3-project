@@ -15,9 +15,7 @@
 		if(res) {
 			document.getElementsByName("logout_ans")[0].value = "true";
 			document.getElementById("logout_confirm").submit();
-		} else {
-			history.back();
-		};
+		}
 	}
 </script> 
 </head>
